@@ -511,19 +511,21 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuMedias.add(menuExibirVarianciaQuadrante_12);
 
-		//		menuBar.add(menuQuantidadePixels);
-		//		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
-		//		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
-		//			@Override
-		//			public void actionPerformed(ActionEvent arg0) {
-		//				if (imagem == null) {
-		//					abrirNovaImagem();
-		//				} else {
-		//					//					new JanelaVarianciaQuadrante_12(imagem);
-		//				}
-		//			}
-		//		});
-		//		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
+		menuQuantidadePixels = new JMenu("Quantidade de Pixels");
+		menuBar.add(menuQuantidadePixels);
+
+		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
+		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaExibirQuantidadePixelsInferior(imagem);
+				}
+			}
+		});
+		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
 			
 	}
 	
