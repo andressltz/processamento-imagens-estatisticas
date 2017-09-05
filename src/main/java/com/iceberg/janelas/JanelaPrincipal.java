@@ -21,7 +21,6 @@ import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Efeitos;
 import com.iceberg.sistema.Imagem;
 
-
 public class JanelaPrincipal extends Janela{
 	private static final long serialVersionUID = 1L;
 
@@ -68,15 +67,19 @@ public class JanelaPrincipal extends Janela{
 	// Menu Histograma
 	private JMenu menuHistograma;
 	private JMenu menuHistogramaQuadrante_1;
-	private JMenu menuMediaQuadrante_2;
-	private JMenu menuModaQuadrante_4;
-	private JMenu menuVarianciaQuadrante_12;
 	private JMenuItem menuExibirHistograma;
 	private JMenuItem menuExibirHistogramaQuadrante1;
+
+	// Menu Médias
+	private JMenu menuMedias;
 	private JMenuItem menuExibirMediaQuadrante_2;
 	private JMenuItem menuExibirModaQuadrante_4;
 	private JMenuItem menuExibirVarianciaQuadrante_12;
 	
+	// Menu quantidadePixels
+	private JMenu menuQuantidadePixels;
+	private JMenuItem menuExibirQtdPixelsInferior;
+
 	// Painel lateral
 	private JPanel pnlConfig;
 	private JLabel lblImagem;
@@ -465,9 +468,10 @@ public class JanelaPrincipal extends Janela{
 		
 		menuHistogramaQuadrante_1.add( menuExibirHistogramaQuadrante1 );
 
-		menuMediaQuadrante_2 = new JMenu("Média Quadrante 2");
-		menuBar.add(menuMediaQuadrante_2);
-		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir");
+		menuMedias = new JMenu("Médias");
+		menuBar.add(menuMedias);
+
+		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
 		menuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -479,11 +483,9 @@ public class JanelaPrincipal extends Janela{
 
 			}
 		});
-		menuMediaQuadrante_2.add(menuExibirMediaQuadrante_2);
+		menuMedias.add(menuExibirMediaQuadrante_2);
 
-		menuModaQuadrante_4 = new JMenu("Moda Quadrante 4");
-		menuBar.add(menuModaQuadrante_4);
-		menuExibirModaQuadrante_4 = new JMenuItem("Exibir");
+		menuExibirModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
 		menuExibirModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -494,11 +496,9 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuModaQuadrante_4.add(menuExibirModaQuadrante_4);
+		menuMedias.add(menuExibirModaQuadrante_4);
 
-		menuVarianciaQuadrante_12 = new JMenu("Variância Quadrantes 1 e 2");
-		menuBar.add(menuVarianciaQuadrante_12);
-		menuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir");
+		menuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
 		menuExibirVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -509,7 +509,21 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuVarianciaQuadrante_12.add(menuExibirVarianciaQuadrante_12);
+		menuMedias.add(menuExibirVarianciaQuadrante_12);
+
+		//		menuBar.add(menuQuantidadePixels);
+		//		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
+		//		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
+		//			@Override
+		//			public void actionPerformed(ActionEvent arg0) {
+		//				if (imagem == null) {
+		//					abrirNovaImagem();
+		//				} else {
+		//					//					new JanelaVarianciaQuadrante_12(imagem);
+		//				}
+		//			}
+		//		});
+		//		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
 			
 	}
 	
