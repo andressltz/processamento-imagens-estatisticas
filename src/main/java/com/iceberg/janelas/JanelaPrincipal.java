@@ -90,14 +90,14 @@ public class JanelaPrincipal extends Janela{
 		carregarMenu();
 		setJMenuBar(menuBar);
 		
-		// Onde a imagem ser� exibida
+		// Onde a imagem será exibida
 		lblImagem = new JLabel();
 		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(new JScrollPane(lblImagem), BorderLayout.CENTER);
 		
 		// Painel lateral
 		pnlConfig = new JPanel();
-		pnlConfig.setBorder( new TitledBorder( new LineBorder( new Color( 25, 25, 112 ) ), "Configura��es", TitledBorder.CENTER, TitledBorder.TOP, null, new Color( 0, 0, 128 ) ) );
+		pnlConfig.setBorder(new TitledBorder(new LineBorder(new Color(25, 25, 112)), "Configurações", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 128)));
 		pnlConfig.setVisible( false );
 		getContentPane().add(pnlConfig, BorderLayout.WEST);
 		
@@ -363,7 +363,7 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_60);
 		
-		menuFiltro_70 = new JMenuItem("Filtro M�dia");
+		menuFiltro_70 = new JMenuItem("Filtro Média");
 		menuFiltro_70.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {				
@@ -419,7 +419,7 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_110);
 		
-		menuFiltro_120 = new JMenuItem("Detec��o de Bordas");
+		menuFiltro_120 = new JMenuItem("Detecção de Bordas");
 		menuFiltro_120.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {								
