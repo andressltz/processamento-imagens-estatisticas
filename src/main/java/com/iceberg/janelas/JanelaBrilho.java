@@ -14,10 +14,6 @@ import com.iceberg.sistema.Efeitos;
 import com.iceberg.sistema.Imagem;
 
 public class JanelaBrilho extends JPanel{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	JanelaPrincipal jp;
@@ -33,6 +29,7 @@ public class JanelaBrilho extends JPanel{
 	public JanelaBrilho(JanelaPrincipal jp) {
 		this.jp = jp;
 		montaJanela();
+		
 	}
 
 	public void montaJanela(){

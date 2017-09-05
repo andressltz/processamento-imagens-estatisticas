@@ -64,6 +64,7 @@ public class JanelaPrincipal extends Janela{
 	private JMenuItem menuFiltro_110;
 	private JMenuItem menuFiltro_120;
 	private JMenuItem menuFiltro_130;
+	private JMenuItem menuFiltro_131;
 	
 	// Menu Histograma
 	private JMenu menuHistograma;
@@ -449,8 +450,21 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		
 		menuFiltros.add( menuFiltro_130 );
+		
+		menuHistograma.add(menuExibirHistograma);
+		menuFiltro_131 = new JMenuItem( "Valores Pixels" );
+		menuFiltro_131.addActionListener( new ActionListener(){
+			@Override
+			public void actionPerformed( ActionEvent e ) {
+				adicionaTelaConfig( "Menor 100", new JanelaTonalidadeMenor100( imagem ) );
+				
+			}
+			
+		});
+		menuFiltros.add( menuFiltro_131 );
+		
+		
 		menuHistogramaQuadrante_1 = new JMenu( "Histograma Histograma 1" );
 		menuBar.add( menuHistogramaQuadrante_1 );
 		menuExibirHistogramaQuadrante1 = new JMenuItem( "Exibir" );
@@ -543,6 +557,13 @@ public class JanelaPrincipal extends Janela{
 		fechaTelaConfig();
 		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.add(panel);
+		pnlConfig.setVisible(true);
+		
+	}
+	
+	public void adicionaTelaConfig(String titulo, Object panel){
+		fechaTelaConfig();
+		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.setVisible(true);
 		
 	}
