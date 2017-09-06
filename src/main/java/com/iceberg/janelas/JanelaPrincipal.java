@@ -564,7 +564,7 @@ public class JanelaPrincipal extends Janela{
 	public void adicionaTelaConfig(String titulo, Object panel){
 		fechaTelaConfig();
 		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
-		pnlConfig.setVisible(true);
+		pnlConfig.setVisible(true);    // teste
 		
 	}
 	
