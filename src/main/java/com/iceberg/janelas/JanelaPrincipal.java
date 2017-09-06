@@ -21,7 +21,6 @@ import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Efeitos;
 import com.iceberg.sistema.Imagem;
 
-
 public class JanelaPrincipal extends Janela{
 	private static final long serialVersionUID = 1L;
 
@@ -65,19 +64,24 @@ public class JanelaPrincipal extends Janela{
 	private JMenuItem menuFiltro_120;
 	private JMenuItem menuFiltro_130;
 	private JMenuItem menuFiltro_131;
+	private JMenuItem menuFiltroMediaQuadrante_02;
 	
 	// Menu Histograma
 	private JMenu menuHistograma;
 	private JMenu menuHistogramaQuadrante_1;
-	private JMenu menuMediaQuadrante_2;
-	private JMenu menuModaQuadrante_4;
-	private JMenu menuVarianciaQuadrante_12;
 	private JMenuItem menuExibirHistograma;
 	private JMenuItem menuExibirHistogramaQuadrante1;
+
+	// Menu Médias
+	private JMenu menuMedias;
 	private JMenuItem menuExibirMediaQuadrante_2;
 	private JMenuItem menuExibirModaQuadrante_4;
 	private JMenuItem menuExibirVarianciaQuadrante_12;
 	
+	// Menu quantidadePixels
+	private JMenu menuQuantidadePixels;
+	private JMenuItem menuExibirQtdPixelsInferior;
+
 	// Painel lateral
 	private JPanel pnlConfig;
 	private JLabel lblImagem;
@@ -88,14 +92,14 @@ public class JanelaPrincipal extends Janela{
 		carregarMenu();
 		setJMenuBar(menuBar);
 		
-		// Onde a imagem ser� exibida
+		// Onde a imagem será exibida
 		lblImagem = new JLabel();
 		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(new JScrollPane(lblImagem), BorderLayout.CENTER);
 		
 		// Painel lateral
 		pnlConfig = new JPanel();
-		pnlConfig.setBorder( new TitledBorder( new LineBorder( new Color( 25, 25, 112 ) ), "Configura��es", TitledBorder.CENTER, TitledBorder.TOP, null, new Color( 0, 0, 128 ) ) );
+		pnlConfig.setBorder(new TitledBorder(new LineBorder(new Color(25, 25, 112)), "Configurações", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 128)));
 		pnlConfig.setVisible( false );
 		getContentPane().add(pnlConfig, BorderLayout.WEST);
 		
@@ -361,7 +365,7 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_60);
 		
-		menuFiltro_70 = new JMenuItem("Filtro M�dia");
+		menuFiltro_70 = new JMenuItem("Filtro Média");
 		menuFiltro_70.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {				
@@ -417,7 +421,7 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_110);
 		
-		menuFiltro_120 = new JMenuItem("Detec��o de Bordas");
+		menuFiltro_120 = new JMenuItem("Detecção de Bordas");
 		menuFiltro_120.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {								
@@ -427,6 +431,19 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		menuFiltros.add(menuFiltro_120);
+		
+		/**
+		 * TODO Parte 2<br>
+		 * Apresente novamente a imagem com as seguintes alterações: <br>
+		 * a)	Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
+		 * b)	Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
+		 * c)	Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
+		 * d)	Valores menores que a média do quadrante 2 recebem 100.<br>
+		 * e)	Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
+		 */
+		menuFiltroMediaQuadrante_02 = new JMenuItem(
+				"Valores maiores ou iguais a média do quadrante 2 recebem branco.");
+		
 		
 		menuHistograma = new JMenu("Histograma");
 		menuBar.add(menuHistograma);
@@ -479,9 +496,10 @@ public class JanelaPrincipal extends Janela{
 		
 		menuHistogramaQuadrante_1.add( menuExibirHistogramaQuadrante1 );
 
-		menuMediaQuadrante_2 = new JMenu("Média Quadrante 2");
-		menuBar.add(menuMediaQuadrante_2);
-		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir");
+		menuMedias = new JMenu("Médias");
+		menuBar.add(menuMedias);
+
+		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
 		menuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -493,11 +511,9 @@ public class JanelaPrincipal extends Janela{
 
 			}
 		});
-		menuMediaQuadrante_2.add(menuExibirMediaQuadrante_2);
+		menuMedias.add(menuExibirMediaQuadrante_2);
 
-		menuModaQuadrante_4 = new JMenu("Moda Quadrante 4");
-		menuBar.add(menuModaQuadrante_4);
-		menuExibirModaQuadrante_4 = new JMenuItem("Exibir");
+		menuExibirModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
 		menuExibirModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -508,11 +524,9 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuModaQuadrante_4.add(menuExibirModaQuadrante_4);
+		menuMedias.add(menuExibirModaQuadrante_4);
 
-		menuVarianciaQuadrante_12 = new JMenu("Variância Quadrantes 1 e 2");
-		menuBar.add(menuVarianciaQuadrante_12);
-		menuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir");
+		menuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
 		menuExibirVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -523,7 +537,23 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuVarianciaQuadrante_12.add(menuExibirVarianciaQuadrante_12);
+		menuMedias.add(menuExibirVarianciaQuadrante_12);
+
+		menuQuantidadePixels = new JMenu("Quantidade de Pixels");
+		menuBar.add(menuQuantidadePixels);
+
+		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
+		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaExibirQuantidadePixelsInferior(imagem);
+				}
+			}
+		});
+		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
 			
 	}
 	

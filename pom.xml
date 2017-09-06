@@ -35,52 +35,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jetty</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-
-
-		<dependency>
 			<groupId>jfree</groupId>
 			<artifactId>jcommon</artifactId>
 			<version>1.0.16</version>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.jfree</groupId> -->
-		<!-- <artifactId>jcommon</artifactId> -->
-		<!-- <version>1.0.17</version> -->
-		<!-- </dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
 		<dependency>
 			<groupId>jfree</groupId>
 			<artifactId>jfreechart</artifactId>
 			<version>1.0.13</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.jfree</groupId> -->
-		<!-- <artifactId>jfreechart</artifactId> -->
-		<!-- <version>1.0.14</version> -->
-		<!-- </dependency> -->
 
 	</dependencies>
 
