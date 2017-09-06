@@ -435,14 +435,19 @@ public class JanelaPrincipal extends Janela{
 		/**
 		 * TODO Parte 2<br>
 		 * Apresente novamente a imagem com as seguintes alterações: <br>
-		 * a)	Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
 		 * b)	Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
 		 * c)	Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
 		 * d)	Valores menores que a média do quadrante 2 recebem 100.<br>
 		 * e)	Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
 		 */
-		menuFiltroMediaQuadrante_02 = new JMenuItem(
-				"Valores maiores ou iguais a média do quadrante 2 recebem branco.");
+		menuFiltroMediaQuadrante_02 = new JMenuItem("Valores maiores ou iguais a média do quadrante 2 recebem branco");
+		menuFiltroMediaQuadrante_02.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				trocaImagem(Efeitos.mediaQuadrante2Branco(getImagem()));
+			}
+		});
+		menuFiltros.add(menuFiltroMediaQuadrante_02);
 		
 		
 		menuHistograma = new JMenu("Histograma");

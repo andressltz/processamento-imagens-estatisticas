@@ -9,14 +9,15 @@ public class JanelaMediaQuadrante_2 extends Janela {
 
 	private static final long serialVersionUID = 1L;
 
-	private int altura, largura;
+	private static int altura;
+
+	private static int largura;
 
 	/**
 	 * b) Calcule a média das tonalidades de cinza do quadrante 2.
 	 */
 	public JanelaMediaQuadrante_2(Imagem imagem) {
-		calculaQuadrante2(imagem);
-		Integer media = calculaMedia(imagem);
+		Integer media = calculaMediaQuadrante2(imagem);
 
 		getContentPane().removeAll(); // Impede que os graficos se sobreponham 
 		getContentPane().add(new Label("Média das tonalidades de cinza do Quandrante 2 é " + media));
@@ -24,7 +25,13 @@ public class JanelaMediaQuadrante_2 extends Janela {
 		MontaJanela(500, 150);
 	}
 
-	private Integer calculaMedia(Imagem imagem) {
+	public static int calculaMediaQuadrante2(Imagem imagem) {
+		calculaQuadrante2(imagem);
+		Integer media = calculaMedia(imagem);
+		return media;
+	}
+
+	private static Integer calculaMedia(Imagem imagem) {
 		Integer soma = 0;
 		Integer coluna, linha;
 		Integer media = 0;
@@ -40,7 +47,7 @@ public class JanelaMediaQuadrante_2 extends Janela {
 		return media;
 	}
 
-	private Integer[][] calculaQuadrante2(Imagem imagem) {
+	private static Integer[][] calculaQuadrante2(Imagem imagem) {
 		if (imagem.getBufferedImage().getType() != BufferedImage.TYPE_BYTE_GRAY) {
 			imagem = Imagem.getCopiaEscalaCinza(imagem);
 

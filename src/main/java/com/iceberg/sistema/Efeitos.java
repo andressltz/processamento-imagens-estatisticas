@@ -2,6 +2,8 @@ package com.iceberg.sistema;
 
 import java.awt.image.BufferedImage;
 
+import com.iceberg.janelas.JanelaMediaQuadrante_2;
+
 public class Efeitos {
 	public Efeitos() {}
 	
@@ -128,4 +130,15 @@ public class Efeitos {
 		
 		return imagem;
 	}
+
+	/**
+	 * a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
+	 */
+	public static BufferedImage mediaQuadrante2Branco(Imagem imagem) {
+		int media = JanelaMediaQuadrante_2.calculaMediaQuadrante2(imagem);
+		// TODO fazer for e se for igual ou maior recebe branco
+		// TODO tranformar essa matriz em buffer e retornar
+		return null;
+	}
+
 }
