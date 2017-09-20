@@ -12,9 +12,6 @@ import com.iceberg.janelas.JanelaPrincipal;
 
 public class JanelaFiltroGaussiano extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JanelaPrincipal jp;
 	
