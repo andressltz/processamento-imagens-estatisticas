@@ -66,36 +66,44 @@ public class JanelaPrincipal extends Janela{
 	// Menu Efeitos
 	private JMenu menuFiltros;
 	private JMenu menuFiltrosDiversos;
-	private JMenuItem menuFiltro_10;
-	private JMenuItem menuFiltro_20;
-	private JMenuItem menuFiltro_30;
-	private JMenuItem menuFiltro_35;
-	private JMenuItem menuFiltro_40;
-	private JMenuItem menuFiltro_50;
-	private JMenuItem menuFiltro_60;
-	private JMenuItem menuFiltro_70;
-	private JMenuItem menuFiltro_80;
-	private JMenuItem menuFiltro_90;
-	private JMenuItem menuFiltro_110;
-	private JMenuItem menuFiltro_120;
-	private JMenuItem menuFiltro_130;
-	private JMenuItem menuFiltro_131;
+	private JMenuItem submenuFiltro_10;
+	private JMenuItem submenuFiltro_20;
+	private JMenuItem submenuFiltro_30;
+	private JMenuItem submenuFiltro_35;
+	private JMenuItem submenuFiltro_40;
+	private JMenuItem submenuFiltro_50;
+	private JMenuItem submenuFiltro_60;
+	private JMenuItem submenuFiltro_70;
+	private JMenuItem submenuFiltro_80;
+	private JMenuItem submenuFiltro_90;
+	private JMenuItem submenuFiltro_110;
+	private JMenuItem submenuFiltro_120;
+	private JMenuItem submenuFiltro_130;
+	private JMenuItem submenuFiltro_131;
 	
 	// Menu Histograma
 	private JMenu menuHistograma;
-	private JMenu menuHistogramaQuadrante_1;
-	private JMenuItem menuExibirHistograma;
-	private JMenuItem menuExibirHistogramaQuadrante1;
+	private JMenuItem submenuExibirHistograma;
+	private JMenuItem submenuExibirHistogramaQuadrante1;
 
 	// Menu Médias
 	private JMenu menuMedias;
-	private JMenuItem menuExibirMediaQuadrante_2;
-	private JMenuItem menuExibirModaQuadrante_4;
-	private JMenuItem menuExibirVarianciaQuadrante_12;
+	private JMenuItem submenuExibirMediaQuadrante_2;
+	private JMenuItem submenuExibirModaQuadrante_4;
+	private JMenuItem submenuExibirVarianciaQuadrante_12;
 	
 	// Menu quantidadePixels
 	private JMenu menuQuantidadePixels;
 	private JMenuItem menuExibirQtdPixelsInferior;
+
+	// Menu Rotacionar
+	private JMenu menuRotacionar;
+	private JMenuItem submenuRotacionarHorizontal;
+	// private JMenuItem submenuRotacionarVertical;
+	private JMenuItem submenuRotacionarVerticalHorizontal;
+	private JMenuItem submenuRotacionar90Graus;
+	private JMenuItem submenuRotacionar180Graus;
+	private JMenuItem submenuRotacionar270Graus;
 
 	// Painel lateral
 	private JPanel pnlConfig;
@@ -314,8 +322,8 @@ public class JanelaPrincipal extends Janela{
 		menuBarPrincipal.add(menuFiltros);
 		menuFiltrosDiversos = new JMenu("Diversos");
 		menuFiltros.add(menuFiltrosDiversos);
-		menuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
-		menuFiltro_10.addActionListener(new ActionListener(){
+		submenuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
+		submenuFiltro_10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(Efeitos.maioresMediaBranco(imagem).getBufferedImage());
@@ -323,10 +331,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add(menuFiltro_10);
+		menuFiltrosDiversos.add(submenuFiltro_10);
 		
-		menuFiltro_20 = new JMenuItem("Valores maiores ou iguais a moda de toda a imagem recebem preto");
-		menuFiltro_20.addActionListener(new ActionListener(){
+		submenuFiltro_20 = new JMenuItem("Valores maiores ou iguais a moda de toda a imagem recebem preto");
+		submenuFiltro_20.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(Efeitos.maioresModaPreto(imagem).getBufferedImage());
@@ -334,10 +342,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add(menuFiltro_20);
+		menuFiltrosDiversos.add(submenuFiltro_20);
 		
-		menuFiltro_30 = new JMenuItem("Valores maiores ou iguais a mediana de toda a imagem recebem 140");
-		menuFiltro_30.addActionListener( new ActionListener(){
+		submenuFiltro_30 = new JMenuItem("Valores maiores ou iguais a mediana de toda a imagem recebem 140");
+		submenuFiltro_30.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				trocaImagem( Efeitos.maioresMediana140( imagem ).getBufferedImage() );
@@ -345,10 +353,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add( menuFiltro_30 );
+		menuFiltrosDiversos.add(submenuFiltro_30);
 		
-		menuFiltro_35 = new JMenuItem("Valores da mediana do terceiro quadrante NEW");
-		menuFiltro_35.addActionListener( new ActionListener(){
+		submenuFiltro_35 = new JMenuItem("Valores da mediana do terceiro quadrante NEW");
+		submenuFiltro_35.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				trocaImagem( Efeitos.maioresMediana140( imagem ).getBufferedImage() );
@@ -356,10 +364,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add( menuFiltro_35 );
+		menuFiltrosDiversos.add(submenuFiltro_35);
 		
-		menuFiltro_40 = new JMenuItem( "Valores menores que a média de toda a imagem recebem 255" );
-		menuFiltro_40.addActionListener( new ActionListener(){
+		submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
+		submenuFiltro_40.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				trocaImagem( Efeitos.medianaQuadrante3( imagem ).getBufferedImage() );
@@ -367,10 +375,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add(menuFiltro_40);
+		menuFiltrosDiversos.add(submenuFiltro_40);
 		
-		menuFiltro_50 = new JMenuItem("Valores maiores que a mediana de toda a imagem recebem 0 e menores que a média recebem 255");
-		menuFiltro_50.addActionListener(new ActionListener(){
+		submenuFiltro_50 = new JMenuItem("Valores maiores que a mediana de toda a imagem recebem 0 e menores que a média recebem 255");
+		submenuFiltro_50.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(Efeitos.maioresMediana0MenoresMedia255(imagem).getBufferedImage());
@@ -378,10 +386,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltrosDiversos.add(menuFiltro_50);
+		menuFiltrosDiversos.add(submenuFiltro_50);
 		
-		menuFiltro_60 = new JMenuItem("Converter em tons de cinza");
-		menuFiltro_60.addActionListener(new ActionListener(){
+		submenuFiltro_60 = new JMenuItem("Converter em tons de cinza");
+		submenuFiltro_60.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				trocaImagem(Efeitos.converteParaTonsDeCinza(imagem).getBufferedImage());
@@ -389,10 +397,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_60);
+		menuFiltros.add(submenuFiltro_60);
 		
-		menuFiltro_70 = new JMenuItem("Filtro Média");
-		menuFiltro_70.addActionListener(new ActionListener(){
+		submenuFiltro_70 = new JMenuItem("Filtro Média");
+		submenuFiltro_70.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				int[][] media = {
@@ -406,10 +414,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_70);
+		menuFiltros.add(submenuFiltro_70);
 		
-		menuFiltro_80 = new JMenuItem("Filtro Gausiano");
-		menuFiltro_80.addActionListener(new ActionListener(){
+		submenuFiltro_80 = new JMenuItem("Filtro Gausiano");
+		submenuFiltro_80.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				int[][] gausiana = {
@@ -423,10 +431,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_80);
+		menuFiltros.add(submenuFiltro_80);
 		
-		menuFiltro_90 = new JMenuItem("Filtro Limiar");
-		menuFiltro_90.addActionListener(new ActionListener(){
+		submenuFiltro_90 = new JMenuItem("Filtro Limiar");
+		submenuFiltro_90.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Filtro de Limiarização", new JanelaLimiarizacao(JanelaPrincipal.this));
@@ -434,10 +442,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_90);
+		menuFiltros.add(submenuFiltro_90);
 		
-		menuFiltro_110 = new JMenuItem("Filtro Livre");
-		menuFiltro_110.addActionListener(new ActionListener(){
+		submenuFiltro_110 = new JMenuItem("Filtro Livre");
+		submenuFiltro_110.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Filtro Livre", new JanelaFiltroLivre(JanelaPrincipal.this));
@@ -445,10 +453,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_110);
+		menuFiltros.add(submenuFiltro_110);
 		
-		menuFiltro_120 = new JMenuItem("Detecção de Bordas");
-		menuFiltro_120.addActionListener(new ActionListener(){
+		submenuFiltro_120 = new JMenuItem("Detecção de Bordas");
+		submenuFiltro_120.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Detecção de Bordas", new JanelaBordas(JanelaPrincipal.this));
@@ -456,26 +464,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add(menuFiltro_120);
+		menuFiltros.add(submenuFiltro_120);
 		
-		/*
-		 * Menu Histograma
-		 */
-		menuHistograma = new JMenu("Histograma");
-		menuBarPrincipal.add(menuHistograma);
-		menuExibirHistograma = new JMenuItem("Exibir");
-		menuExibirHistograma.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new JanelaHistograma(imagem);
-				
-			}
-			
-		});
-		
-		menuHistograma.add(menuExibirHistograma);
-		menuFiltro_130 = new JMenuItem("Testeeee");
-		menuFiltro_130.addActionListener(new ActionListener(){
+		submenuFiltro_130 = new JMenuItem("Testeeee");
+		submenuFiltro_130.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Testeeeeeeeeeeeeeeee", new JanelaBordas(JanelaPrincipal.this));
@@ -483,11 +475,10 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add( menuFiltro_130 );
+		menuFiltros.add(submenuFiltro_130);
 		
-		menuHistograma.add(menuExibirHistograma);
-		menuFiltro_131 = new JMenuItem( "Valores Pixels" );
-		menuFiltro_131.addActionListener( new ActionListener(){
+		submenuFiltro_131 = new JMenuItem("Valores Pixels");
+		submenuFiltro_131.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				adicionaTelaConfig( "Menor 100", new JanelaTonalidadeMenor100( imagem ) );
@@ -495,24 +486,32 @@ public class JanelaPrincipal extends Janela{
 			}
 			
 		});
-		menuFiltros.add( menuFiltro_131 );
+		menuFiltros.add(submenuFiltro_131);
 		
 		/*
-		 * Menu Histograma 2
+		 * Menu Histograma
 		 */
-		menuHistogramaQuadrante_1 = new JMenu( "Histograma Histograma 1" );
-		menuBarPrincipal.add(menuHistogramaQuadrante_1);
-		menuExibirHistogramaQuadrante1 = new JMenuItem( "Exibir" );
-		menuExibirHistogramaQuadrante1.addActionListener( new ActionListener(){
+		menuHistograma = new JMenu("Histograma");
+		menuBarPrincipal.add(menuHistograma);
+
+		submenuExibirHistograma = new JMenuItem("Exibir Histograma");
+		submenuExibirHistograma.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new JanelaHistograma(imagem);
+			}
+		});
+		menuHistograma.add(submenuExibirHistograma);
+
+		submenuExibirHistogramaQuadrante1 = new JMenuItem("Exibir Histograma Quadrante 1");
+		submenuExibirHistogramaQuadrante1.addActionListener( new ActionListener(){
 			@Override
 			public void actionPerformed( ActionEvent arg0 ) {
 				new JanelaHistogramaQuadrante_1( imagem );
-				
 			}
-			
 		});
-		
-		menuHistogramaQuadrante_1.add( menuExibirHistogramaQuadrante1 );
+		menuHistograma.add(submenuExibirHistogramaQuadrante1);
+
 
 		/*
 		 * Menu Médias
@@ -520,8 +519,8 @@ public class JanelaPrincipal extends Janela{
 		menuMedias = new JMenu("Médias");
 		menuBarPrincipal.add(menuMedias);
 
-		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
-		menuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
+		submenuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
+		submenuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -532,10 +531,10 @@ public class JanelaPrincipal extends Janela{
 
 			}
 		});
-		menuMedias.add(menuExibirMediaQuadrante_2);
+		menuMedias.add(submenuExibirMediaQuadrante_2);
 
-		menuExibirModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
-		menuExibirModaQuadrante_4.addActionListener(new ActionListener() {
+		submenuExibirModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
+		submenuExibirModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -545,10 +544,10 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuMedias.add(menuExibirModaQuadrante_4);
+		menuMedias.add(submenuExibirModaQuadrante_4);
 
-		menuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
-		menuExibirVarianciaQuadrante_12.addActionListener(new ActionListener() {
+		submenuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
+		submenuExibirVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -558,7 +557,7 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuMedias.add(menuExibirVarianciaQuadrante_12);
+		menuMedias.add(submenuExibirVarianciaQuadrante_12);
 
 		/*
 		 * Menu Quantidade de Pixels
@@ -578,20 +577,42 @@ public class JanelaPrincipal extends Janela{
 			}
 		});
 		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
-			
+
+		/*
+		 * Menu Rotacionar
+		 */
+		menuRotacionar = new JMenu("Rotacionar");
+		menuBarPrincipal.add(menuRotacionar);
+
+		submenuRotacionar90Graus = new JMenuItem("Rotacionar 90 graus");
+		submenuRotacionar90Graus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaExibirQuantidadePixelsInferior(imagem);
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionar90Graus);
+		// menuRotacionar.add(submenuRotacionar180Graus);
+		// menuRotacionar.add(submenuRotacionar270Graus);
+		// menuRotacionar.add(submenuRotacionarHorizontal);
+
 	}
 	
-	public void carregaImagem(Imagem im){
+	private void carregaImagem(Imagem im) {
 		lblImagem.setIcon(new ImageIcon(im.getBufferedImage()));
 		
 	}
 	
-	public void trocaImagem(BufferedImage bi){
+	public void trocaImagem(BufferedImage bi) {
 		trocaImagem(bi, true);
 		
 	}
 	
-	public void trocaImagem(BufferedImage bi, boolean salvar){	
+	public void trocaImagem(BufferedImage bi, boolean salvar) {
 		if(salvar == true){
 			imagem = new Imagem(bi);
 			
@@ -601,13 +622,13 @@ public class JanelaPrincipal extends Janela{
 		
 	}
 	
-	public void restauraImagem(){
+	public void restauraImagem() {
 		imagem = new Imagem(arquivo.getArquivo());
 		carregaImagem(imagem);
 		
 	}
 	
-	public void adicionaTelaConfig(String titulo, JPanel panel){
+	private void adicionaTelaConfig(String titulo, JPanel panel) {
 		fechaTelaConfig();
 		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.add(panel);
@@ -615,7 +636,7 @@ public class JanelaPrincipal extends Janela{
 		
 	}
 	
-	public void adicionaTelaConfig(String titulo, Object panel){
+	private void adicionaTelaConfig(String titulo, Object panel) {
 		fechaTelaConfig();
 		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.setVisible(true);
