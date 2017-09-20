@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.editar;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.iceberg.janelas.JanelaPrincipal;
 
 public class JanelaRotacao extends JPanel{
 

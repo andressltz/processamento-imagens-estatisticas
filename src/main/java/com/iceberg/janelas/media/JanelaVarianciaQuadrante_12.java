@@ -1,8 +1,9 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.media;
 
 import java.awt.Label;
 import java.awt.image.BufferedImage;
 
+import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
 
 public class JanelaVarianciaQuadrante_12 extends Janela {
