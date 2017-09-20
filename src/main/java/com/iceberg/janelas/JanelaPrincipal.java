@@ -99,8 +99,11 @@ public class JanelaPrincipal extends Janela{
 	// Menu Rotacionar
 	private JMenu menuRotacionar;
 	private JMenuItem submenuRotacionarRestOriginal;
+	private JMenuItem submenuRotacionarEspelharHorizontal;
+	private JMenuItem submenuRotacionarEspelharVertical;
 	private JMenuItem submenuRotacionar180Graus;
 	private JMenuItem submenuRotacionar270Graus;
+
 
 	// Painel lateral
 	private JPanel pnlConfig;
@@ -558,11 +561,6 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar = new JMenu("Rotacionar");
 		menuBarPrincipal.add(menuRotacionar);
 
-		// private JMenuItem submenuRotacionarHorizontal;
-		// private JMenuItem submenuRotacionarVertical;
-		// private JMenuItem submenuRotacionarVerticalHorizontal;
-		// private JMenuItem submenuRotacionarEspelharHorizontalmente;
-
 		// A) Original
 		submenuRotacionarRestOriginal = new JMenuItem("A Restaurar imagem original");
 		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
@@ -577,33 +575,35 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuRotacionar.add(submenuRotacionarRestOriginal);
 
-		// B) Horizontal
-		// submenuRotacionarEspelharHorizontalmente = new JMenuItem("B Espelhar Horizontalmente");
-		// submenuRotacionarEspelharHorizontalmente.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent arg0) {
-		// if (imagem == null) {
-		// abrirNovaImagem();
-		// } else {
-		// trocaImagem(imagem.espelhamentoHorizontal());
-		// }
-		// }
-		// });
-		// menuRotacionar.add(submenuRotacionarEspelharHorizontalmente);
+		// B) Espelhar Horizontal
+		submenuRotacionarEspelharHorizontal = new JMenuItem("B Espelhar Horizontalmente");
+		submenuRotacionarEspelharHorizontal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.espelhamentoHorizontal());
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarEspelharHorizontal);
 
-		// C) 180 Espelhado
-		// submenuRotacionar180Graus = new JMenuItem("C Rotacionar 180 graus");
-		// submenuRotacionar180Graus.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent arg0) {
-		// if (imagem == null) {
-		// abrirNovaImagem();
-		// } else {
-		// trocaImagem(imagem.rotacionar(180, true));
-		// }
-		// }
-		// });
-		// menuRotacionar.add(submenuRotacionar180Graus);
+		// C) Espelhar Vertical
+		submenuRotacionarEspelharVertical = new JMenuItem("C Espelhar Verticalmente");
+		submenuRotacionarEspelharVertical.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.espelhamentoVertical());
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarEspelharVertical);
 
 		// D) 180
 		submenuRotacionar180Graus = new JMenuItem("D Rotacionar 180 graus");
@@ -614,12 +614,11 @@ public class JanelaPrincipal extends Janela{
 					abrirNovaImagem();
 				} else {
 					restauraImagem();
-					trocaImagem(imagem.rotacionar(180, true));
+					trocaImagem(imagem.rotacionar(180));
 				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionar180Graus);
-
 
 		// E) 270
 		submenuRotacionar270Graus = new JMenuItem("E Rotacionar 270 graus");
@@ -630,12 +629,11 @@ public class JanelaPrincipal extends Janela{
 					abrirNovaImagem();
 				} else {
 					restauraImagem();
-					trocaImagem(imagem.rotacionar(270, true));
+					trocaImagem(imagem.rotacionar(90));
 				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionar270Graus);
-
 
 	}
 	
