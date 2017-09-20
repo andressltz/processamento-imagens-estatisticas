@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.filtros;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,10 +10,16 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.iceberg.sistema.Efeitos;
+import com.iceberg.janelas.JanelaPrincipal;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.utils.Efeitos;
 
-public class JanelaBrilho extends JPanel{
+
+public class JanelaLimiarizacao extends JPanel{
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	JanelaPrincipal jp;
@@ -26,10 +32,9 @@ public class JanelaBrilho extends JPanel{
     protected Imagem tmpImagem;
     protected int sliderValue;
     
-	public JanelaBrilho(JanelaPrincipal jp) {
+	public JanelaLimiarizacao(JanelaPrincipal jp) {
 		this.jp = jp;
 		montaJanela();
-		
 	}
 
 	public void montaJanela(){
@@ -45,11 +50,11 @@ public class JanelaBrilho extends JPanel{
 				tmpImagem = jp.getImagem().getCopia();
 				sliderValue = source.getValue();
 				
-				jp.trocaImagem(Efeitos.brilho(tmpImagem, sliderValue).getBufferedImage(), false);
+				jp.trocaImagem(tmpImagem.limiarizacao(sliderValue), false);
 			}
 			
 		});
-		add(new JLabel("Brilho: "));
+		add(new JLabel("Limiar: "));
 		add(sliderBrilho);
 			
 		
