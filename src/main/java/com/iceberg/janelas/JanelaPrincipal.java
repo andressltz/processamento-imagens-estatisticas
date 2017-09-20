@@ -20,7 +20,7 @@ import javax.swing.border.TitledBorder;
 import com.iceberg.janelas.editar.JanelaBrilho;
 import com.iceberg.janelas.editar.JanelaContraste;
 import com.iceberg.janelas.editar.JanelaRedimensionar;
-import com.iceberg.janelas.editar.JanelaRotacao;
+//import com.iceberg.janelas.editar.JanelaRotacao;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
 import com.iceberg.janelas.filtros.JanelaBordas;
@@ -54,12 +54,10 @@ public class JanelaPrincipal extends Janela{
 	private JMenu menuEditar;
 	private JMenuItem submenuBrilho;
 	private JMenuItem submenuContraste;
-	private JMenuItem submenuRotacionar;
-	private JMenuItem submenuRedimensionar;
-	private JMenu submenuEspelhar;
-	private JMenuItem submenuVertical;
-	private JMenuItem submenuHorizontal;
-	private JMenuItem submenuTransladar;
+	// private JMenuItem submenuRotacionar;
+	// private JMenu submenuEspelhar;
+	// private JMenuItem submenuVertical;
+	// private JMenuItem submenuHorizontal;
 	private JMenuItem submenuTransfLivre;
 	private JMenuItem submenuRestOriginal;
 	
@@ -103,7 +101,8 @@ public class JanelaPrincipal extends Janela{
 	private JMenuItem submenuRotacionarEspelharVertical;
 	private JMenuItem submenuRotacionar180Graus;
 	private JMenuItem submenuRotacionar270Graus;
-
+	private JMenuItem submenuRotacionarTransladar;
+	private JMenuItem submenuRotacionarRedimensionar;
 
 	// Painel lateral
 	private JPanel pnlConfig;
@@ -228,67 +227,39 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				adicionaTelaConfig("Contraste", new JanelaContraste(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		
 		menuEditar.add(submenuContraste);
-		submenuRotacionar = new JMenuItem("Rotacionar");
-		submenuRotacionar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				adicionaTelaConfig("Rotação", new JanelaRotacao(JanelaPrincipal.this));
-				
-			}
-			
-		});
+		// submenuRotacionar = new JMenuItem("Rotacionar");
+		// submenuRotacionar.addActionListener(new ActionListener(){
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// adicionaTelaConfig("Rotação", new JanelaRotacao(JanelaPrincipal.this));
+		// }
+		// });
+		// menuEditar.add(submenuRotacionar);
 		
-		menuEditar.add(submenuRotacionar);
-		submenuTransladar = new JMenuItem("Transladar");
-		submenuTransladar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
-				
-			}
-			
-		});
+		// submenuEspelhar = new JMenu("Espelhar");
+		// menuEditar.add(submenuEspelhar);
+		// submenuVertical = new JMenuItem("Vertical");
+		// submenuVertical.addActionListener(new ActionListener(){
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// trocaImagem(imagem.espelhamentoVertical());
+		// }
+		// });
+		// submenuEspelhar.add(submenuVertical);
+		//
+		// submenuHorizontal = new JMenuItem("Horizontal");
+		// submenuHorizontal.addActionListener(new ActionListener(){
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// trocaImagem(imagem.espelhamentoHorizontal());
+		// }
+		// });
+		// submenuEspelhar.add(submenuHorizontal);
 		
-		menuEditar.add(submenuTransladar);
-		submenuRedimensionar = new JMenuItem("Redimensionar");
-		submenuRedimensionar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
-				
-			}
-			
-		});
-		
-		menuEditar.add(submenuRedimensionar);
-		submenuEspelhar = new JMenu("Espelhar");
-		menuEditar.add(submenuEspelhar);
-		submenuVertical = new JMenuItem("Vertical");
-		submenuVertical.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				trocaImagem(imagem.espelhamentoVertical());
-				
-			}
-			
-		});
-		
-		submenuEspelhar.add(submenuVertical);
-		submenuHorizontal = new JMenuItem("Horizontal");
-		submenuHorizontal.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				trocaImagem(imagem.espelhamentoHorizontal());
-			}
-		});
-		
-		submenuEspelhar.add(submenuHorizontal);
 		submenuTransfLivre = new JMenuItem("Transformação Livre");
 		submenuTransfLivre.addActionListener(new ActionListener(){
 			@Override
@@ -562,7 +533,7 @@ public class JanelaPrincipal extends Janela{
 		menuBarPrincipal.add(menuRotacionar);
 
 		// A) Original
-		submenuRotacionarRestOriginal = new JMenuItem("A Restaurar imagem original");
+		submenuRotacionarRestOriginal = new JMenuItem("Restaurar imagem original");
 		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -576,7 +547,7 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar.add(submenuRotacionarRestOriginal);
 
 		// B) Espelhar Horizontal
-		submenuRotacionarEspelharHorizontal = new JMenuItem("B Espelhar Horizontalmente");
+		submenuRotacionarEspelharHorizontal = new JMenuItem("Espelhar Horizontalmente");
 		submenuRotacionarEspelharHorizontal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -591,7 +562,7 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar.add(submenuRotacionarEspelharHorizontal);
 
 		// C) Espelhar Vertical
-		submenuRotacionarEspelharVertical = new JMenuItem("C Espelhar Verticalmente");
+		submenuRotacionarEspelharVertical = new JMenuItem("Espelhar Verticalmente");
 		submenuRotacionarEspelharVertical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -606,7 +577,7 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar.add(submenuRotacionarEspelharVertical);
 
 		// D) 180
-		submenuRotacionar180Graus = new JMenuItem("D Rotacionar 180 graus");
+		submenuRotacionar180Graus = new JMenuItem("Rotacionar 180 graus");
 		submenuRotacionar180Graus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -621,7 +592,7 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar.add(submenuRotacionar180Graus);
 
 		// E) 270
-		submenuRotacionar270Graus = new JMenuItem("E Rotacionar 270 graus");
+		submenuRotacionar270Graus = new JMenuItem("Rotacionar 270 graus");
 		submenuRotacionar270Graus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -635,6 +606,33 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuRotacionar.add(submenuRotacionar270Graus);
 
+		// F) Transladar
+		submenuRotacionarTransladar = new JMenuItem("Transladar");
+		submenuRotacionarTransladar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarTransladar);
+
+		// G) Redimensionar
+		submenuRotacionarRedimensionar = new JMenuItem("Redimensionar");
+		submenuRotacionarRedimensionar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarRedimensionar);
 	}
 	
 	private void carregaImagem(Imagem im) {
