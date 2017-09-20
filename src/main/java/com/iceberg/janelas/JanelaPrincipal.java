@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import com.iceberg.janelas.filtros.JanelaFiltroGaussiano;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Efeitos;
 import com.iceberg.sistema.Imagem;
@@ -64,7 +65,7 @@ public class JanelaPrincipal extends Janela{
 	private JMenuItem menuFiltro_120;
 	private JMenuItem menuFiltro_130;
 	private JMenuItem menuFiltro_131;
-	private JMenuItem menuFiltroMediaQuadrante_02;
+	private JMenuItem submenuFiltroGaussiano;
 	
 	// Menu Histograma
 	private JMenu menuHistograma;
@@ -432,19 +433,6 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_120);
 		
-		/**
-		 * TODO Parte 2<br>
-		 * Apresente novamente a imagem com as seguintes alterações: <br>
-		 * a)	Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
-		 * b)	Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
-		 * c)	Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
-		 * d)	Valores menores que a média do quadrante 2 recebem 100.<br>
-		 * e)	Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
-		 */
-		menuFiltroMediaQuadrante_02 = new JMenuItem(
-				"Valores maiores ou iguais a média do quadrante 2 recebem branco.");
-		
-		
 		menuHistograma = new JMenu("Histograma");
 		menuBar.add(menuHistograma);
 		menuExibirHistograma = new JMenuItem("Exibir");
@@ -554,6 +542,19 @@ public class JanelaPrincipal extends Janela{
 			}
 		});
 		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
+
+		submenuFiltroGaussiano = new JMenuItem("Filtro Gaussiano");
+		submenuFiltroGaussiano.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Filtro Gaussiano", new JanelaFiltroGaussiano(JanelaPrincipal.this));
+				}
+			}
+		});
+		menuFiltros.add(submenuFiltroGaussiano);
 			
 	}
 	
