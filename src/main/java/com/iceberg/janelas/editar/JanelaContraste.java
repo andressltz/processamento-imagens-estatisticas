@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.editar;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,8 +10,9 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.iceberg.sistema.Efeitos;
+import com.iceberg.janelas.JanelaPrincipal;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.utils.Efeitos;
 
 public class JanelaContraste extends JPanel{
 

@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.editar;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.iceberg.janelas.JanelaPrincipal;
 
 public class JanelaTranslacao extends JPanel{
 

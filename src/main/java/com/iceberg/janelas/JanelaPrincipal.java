@@ -17,36 +17,52 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import com.iceberg.janelas.editar.JanelaBrilho;
+import com.iceberg.janelas.editar.JanelaContraste;
+import com.iceberg.janelas.editar.JanelaRedimensionar;
+import com.iceberg.janelas.editar.JanelaRotacao;
+import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
+import com.iceberg.janelas.editar.JanelaTranslacao;
+import com.iceberg.janelas.filtros.JanelaBordas;
 import com.iceberg.janelas.filtros.JanelaFiltroGaussiano;
+import com.iceberg.janelas.filtros.JanelaFiltroLivre;
+import com.iceberg.janelas.filtros.JanelaLimiarizacao;
+import com.iceberg.janelas.histograma.JanelaHistograma;
+import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
+import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
+import com.iceberg.janelas.media.JanelaMediaQuadrante_2;
+import com.iceberg.janelas.media.JanelaModaQuadrante_4;
+import com.iceberg.janelas.media.JanelaVarianciaQuadrante_12;
+import com.iceberg.janelas.qntpixels.JanelaExibirQuantidadePixelsInferior;
 import com.iceberg.sistema.Arquivo;
-import com.iceberg.sistema.Efeitos;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.utils.Efeitos;
 
 public class JanelaPrincipal extends Janela{
 	private static final long serialVersionUID = 1L;
 
-	private JMenuBar menuBar;
+	private JMenuBar menuBarPrincipal;
 	
 	// Menu Arquivo
 	private JMenu menuArquivo;
-	private JMenuItem menuAbrir;
-	private JMenuItem menuSalvar;
-	private JMenuItem menuSalvarcomo;
-	private JMenuItem menuInformacoes;
-	private JMenuItem menuSair;
+	private JMenuItem submenuAbrir;
+	private JMenuItem submenuSalvar;
+	private JMenuItem submenuSalvarcomo;
+	private JMenuItem submenuInformacoes;
+	private JMenuItem submenuSair;
 	
 	// Menu Editar
 	private JMenu menuEditar;
-	private JMenuItem menuBrilho;
-	private JMenuItem menuContraste;
-	private JMenuItem menuRotacionar;
-	private JMenuItem menuRedimensionar;
-	private JMenu menuEspelhar;
-	private JMenuItem menuVertical;
-	private JMenuItem menuHorizontal;
-	private JMenuItem menuTransladar;
-	private JMenuItem menuTransfLivre;
-	private JMenuItem menuRestOriginal;
+	private JMenuItem submenuBrilho;
+	private JMenuItem submenuContraste;
+	private JMenuItem submenuRotacionar;
+	private JMenuItem submenuRedimensionar;
+	private JMenu submenuEspelhar;
+	private JMenuItem submenuVertical;
+	private JMenuItem submenuHorizontal;
+	private JMenuItem submenuTransladar;
+	private JMenuItem submenuTransfLivre;
+	private JMenuItem submenuRestOriginal;
 	
 	// Menu Efeitos
 	private JMenu menuFiltros;
@@ -91,7 +107,7 @@ public class JanelaPrincipal extends Janela{
 	
 	public JanelaPrincipal() {
 		carregarMenu();
-		setJMenuBar(menuBar);
+		setJMenuBar(menuBarPrincipal);
 		
 		// Onde a imagem será exibida
 		lblImagem = new JLabel();
@@ -109,13 +125,13 @@ public class JanelaPrincipal extends Janela{
 	}
 	
 	public void carregarMenu(){
-		menuBar = new JMenuBar();
+		menuBarPrincipal = new JMenuBar();
 	
 		menuArquivo = new JMenu("Arquivo");
-		menuBar.add(menuArquivo);
+		menuBarPrincipal.add(menuArquivo);
 		
-		menuAbrir = new JMenuItem("Abrir");
-		menuAbrir.addActionListener(new ActionListener(){
+		submenuAbrir = new JMenuItem("Abrir");
+		submenuAbrir.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -134,10 +150,13 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuArquivo.add(menuAbrir);
+		/*
+		 * Menu Arquivo
+		 */
+		menuArquivo.add(submenuAbrir);
 		menuArquivo.addSeparator();
-		menuSalvar = new JMenuItem("Salvar");
-		menuSalvar.addActionListener(new ActionListener(){
+		submenuSalvar = new JMenuItem("Salvar");
+		submenuSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				arquivo.salvar(imagem);
@@ -146,9 +165,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuArquivo.add(menuSalvar);
-		menuSalvarcomo = new JMenuItem("Salvar como...");
-		menuSalvarcomo.addActionListener(new ActionListener(){
+		menuArquivo.add(submenuSalvar);
+		submenuSalvarcomo = new JMenuItem("Salvar como...");
+		submenuSalvarcomo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				arquivo.salvarComo(imagem);
@@ -157,10 +176,10 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuArquivo.add(menuSalvarcomo);
+		menuArquivo.add(submenuSalvarcomo);
 		menuArquivo.addSeparator();
-		menuInformacoes = new JMenuItem("Informações");
-		menuInformacoes.addActionListener(new ActionListener(){
+		submenuInformacoes = new JMenuItem("Informações");
+		submenuInformacoes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new JanelaPropriedades(arquivo, imagem);
@@ -169,9 +188,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuArquivo.add(menuInformacoes);
-		menuSair = new JMenuItem("Sair");
-		menuSair.addActionListener(new ActionListener(){
+		menuArquivo.add(submenuInformacoes);
+		submenuSair = new JMenuItem("Sair");
+		submenuSair.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);		
@@ -180,11 +199,15 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuArquivo.add(menuSair);
+		menuArquivo.add(submenuSair);
+
+		/*
+		 * Menu Editar
+		 */
 		menuEditar = new JMenu("Editar");
-		menuBar.add(menuEditar);
-		menuBrilho = new JMenuItem("Brilho");
-		menuBrilho.addActionListener(new ActionListener(){
+		menuBarPrincipal.add(menuEditar);
+		submenuBrilho = new JMenuItem("Brilho");
+		submenuBrilho.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				adicionaTelaConfig("Brilho", new JanelaBrilho(JanelaPrincipal.this));
@@ -193,9 +216,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuBrilho);
-		menuContraste = new JMenuItem("Contraste");
-		menuContraste.addActionListener(new ActionListener(){
+		menuEditar.add(submenuBrilho);
+		submenuContraste = new JMenuItem("Contraste");
+		submenuContraste.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				adicionaTelaConfig("Contraste", new JanelaContraste(JanelaPrincipal.this));
@@ -204,9 +227,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuContraste);
-		menuRotacionar = new JMenuItem("Rotacionar");
-		menuRotacionar.addActionListener(new ActionListener(){
+		menuEditar.add(submenuContraste);
+		submenuRotacionar = new JMenuItem("Rotacionar");
+		submenuRotacionar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				adicionaTelaConfig("Rotação", new JanelaRotacao(JanelaPrincipal.this));
@@ -215,9 +238,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuRotacionar);
-		menuTransladar = new JMenuItem("Transladar");
-		menuTransladar.addActionListener(new ActionListener(){
+		menuEditar.add(submenuRotacionar);
+		submenuTransladar = new JMenuItem("Transladar");
+		submenuTransladar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
@@ -226,9 +249,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuTransladar);
-		menuRedimensionar = new JMenuItem("Redimensionar");
-		menuRedimensionar.addActionListener(new ActionListener(){
+		menuEditar.add(submenuTransladar);
+		submenuRedimensionar = new JMenuItem("Redimensionar");
+		submenuRedimensionar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
@@ -237,11 +260,11 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuRedimensionar);
-		menuEspelhar = new JMenu("Espelhar");
-		menuEditar.add(menuEspelhar);
-		menuVertical = new JMenuItem("Vertical");
-		menuVertical.addActionListener(new ActionListener(){
+		menuEditar.add(submenuRedimensionar);
+		submenuEspelhar = new JMenu("Espelhar");
+		menuEditar.add(submenuEspelhar);
+		submenuVertical = new JMenuItem("Vertical");
+		submenuVertical.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(imagem.espelhamentoVertical());
@@ -250,9 +273,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEspelhar.add(menuVertical);
-		menuHorizontal = new JMenuItem("Horizontal");
-		menuHorizontal.addActionListener(new ActionListener(){
+		submenuEspelhar.add(submenuVertical);
+		submenuHorizontal = new JMenuItem("Horizontal");
+		submenuHorizontal.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(imagem.espelhamentoHorizontal());
@@ -261,9 +284,9 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEspelhar.add(menuHorizontal);
-		menuTransfLivre = new JMenuItem("Transformação Livre");
-		menuTransfLivre.addActionListener(new ActionListener(){
+		submenuEspelhar.add(submenuHorizontal);
+		submenuTransfLivre = new JMenuItem("Transformação Livre");
+		submenuTransfLivre.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adicionaTelaConfig("Transformação Livre", new JanelaTransformacaoLivre(JanelaPrincipal.this));
@@ -272,10 +295,10 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuTransfLivre);
+		menuEditar.add(submenuTransfLivre);
 		menuEditar.addSeparator();
-		menuRestOriginal = new JMenuItem("Restaurar Original");
-		menuRestOriginal.addActionListener(new ActionListener(){
+		submenuRestOriginal = new JMenuItem("Restaurar Original");
+		submenuRestOriginal.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				restauraImagem();
@@ -284,9 +307,13 @@ public class JanelaPrincipal extends Janela{
 			
 		});
 		
-		menuEditar.add(menuRestOriginal);
+		menuEditar.add(submenuRestOriginal);
+
+		/*
+		 * Menu Filtros
+		 */
 		menuFiltros = new JMenu("Filtros");
-		menuBar.add(menuFiltros);
+		menuBarPrincipal.add(menuFiltros);
 		menuFiltrosDiversos = new JMenu("Diversos");
 		menuFiltros.add(menuFiltrosDiversos);
 		menuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
@@ -433,8 +460,11 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add(menuFiltro_120);
 		
+		/*
+		 * Menu Histograma
+		 */
 		menuHistograma = new JMenu("Histograma");
-		menuBar.add(menuHistograma);
+		menuBarPrincipal.add(menuHistograma);
 		menuExibirHistograma = new JMenuItem("Exibir");
 		menuExibirHistograma.addActionListener(new ActionListener(){
 			@Override
@@ -469,9 +499,11 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuFiltros.add( menuFiltro_131 );
 		
-		
+		/*
+		 * Menu Histograma 2
+		 */
 		menuHistogramaQuadrante_1 = new JMenu( "Histograma Histograma 1" );
-		menuBar.add( menuHistogramaQuadrante_1 );
+		menuBarPrincipal.add(menuHistogramaQuadrante_1);
 		menuExibirHistogramaQuadrante1 = new JMenuItem( "Exibir" );
 		menuExibirHistogramaQuadrante1.addActionListener( new ActionListener(){
 			@Override
@@ -484,8 +516,11 @@ public class JanelaPrincipal extends Janela{
 		
 		menuHistogramaQuadrante_1.add( menuExibirHistogramaQuadrante1 );
 
+		/*
+		 * Menu Médias
+		 */
 		menuMedias = new JMenu("Médias");
-		menuBar.add(menuMedias);
+		menuBarPrincipal.add(menuMedias);
 
 		menuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
 		menuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
@@ -527,8 +562,11 @@ public class JanelaPrincipal extends Janela{
 		});
 		menuMedias.add(menuExibirVarianciaQuadrante_12);
 
+		/*
+		 * Menu Quantidade de Pixels
+		 */
 		menuQuantidadePixels = new JMenu("Quantidade de Pixels");
-		menuBar.add(menuQuantidadePixels);
+		menuBarPrincipal.add(menuQuantidadePixels);
 
 		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
 		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
