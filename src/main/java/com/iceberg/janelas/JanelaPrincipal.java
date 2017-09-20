@@ -98,10 +98,7 @@ public class JanelaPrincipal extends Janela{
 
 	// Menu Rotacionar
 	private JMenu menuRotacionar;
-	private JMenuItem submenuRotacionarHorizontal;
-	// private JMenuItem submenuRotacionarVertical;
-	private JMenuItem submenuRotacionarVerticalHorizontal;
-	private JMenuItem submenuRotacionar90Graus;
+	private JMenuItem submenuRotacionarRestOriginal;
 	private JMenuItem submenuRotacionar180Graus;
 	private JMenuItem submenuRotacionar270Graus;
 
@@ -285,9 +282,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(imagem.espelhamentoHorizontal());
-				
 			}
-			
 		});
 		
 		submenuEspelhar.add(submenuHorizontal);
@@ -296,9 +291,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adicionaTelaConfig("Transformação Livre", new JanelaTransformacaoLivre(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		
 		menuEditar.add(submenuTransfLivre);
@@ -308,11 +301,8 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				restauraImagem();
-				
 			}
-			
 		});
-		
 		menuEditar.add(submenuRestOriginal);
 
 		/*
@@ -371,9 +361,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				trocaImagem( Efeitos.medianaQuadrante3( imagem ).getBufferedImage() );
-				
 			}
-			
 		});
 		menuFiltrosDiversos.add(submenuFiltro_40);
 		
@@ -382,9 +370,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trocaImagem(Efeitos.maioresMediana0MenoresMedia255(imagem).getBufferedImage());
-				
 			}
-			
 		});
 		menuFiltrosDiversos.add(submenuFiltro_50);
 		
@@ -393,9 +379,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				trocaImagem(Efeitos.converteParaTonsDeCinza(imagem).getBufferedImage());
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_60);
 		
@@ -438,9 +422,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Filtro de Limiarização", new JanelaLimiarizacao(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_90);
 		
@@ -449,9 +431,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Filtro Livre", new JanelaFiltroLivre(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_110);
 		
@@ -460,9 +440,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Detecção de Bordas", new JanelaBordas(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_120);
 		
@@ -471,9 +449,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed(ActionEvent e) {								
 				adicionaTelaConfig("Testeeeeeeeeeeeeeeee", new JanelaBordas(JanelaPrincipal.this));
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_130);
 		
@@ -482,9 +458,7 @@ public class JanelaPrincipal extends Janela{
 			@Override
 			public void actionPerformed( ActionEvent e ) {
 				adicionaTelaConfig( "Menor 100", new JanelaTonalidadeMenor100( imagem ) );
-				
 			}
-			
 		});
 		menuFiltros.add(submenuFiltro_131);
 		
@@ -584,21 +558,84 @@ public class JanelaPrincipal extends Janela{
 		menuRotacionar = new JMenu("Rotacionar");
 		menuBarPrincipal.add(menuRotacionar);
 
-		submenuRotacionar90Graus = new JMenuItem("Rotacionar 90 graus");
-		submenuRotacionar90Graus.addActionListener(new ActionListener() {
+		// private JMenuItem submenuRotacionarHorizontal;
+		// private JMenuItem submenuRotacionarVertical;
+		// private JMenuItem submenuRotacionarVerticalHorizontal;
+		// private JMenuItem submenuRotacionarEspelharHorizontalmente;
+
+		// A) Original
+		submenuRotacionarRestOriginal = new JMenuItem("A Restaurar imagem original");
+		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
 					abrirNovaImagem();
 				} else {
-					new JanelaExibirQuantidadePixelsInferior(imagem);
+					restauraImagem();
 				}
 			}
 		});
-		menuRotacionar.add(submenuRotacionar90Graus);
+		menuRotacionar.add(submenuRotacionarRestOriginal);
+
+		// B) Horizontal
+		// submenuRotacionarEspelharHorizontalmente = new JMenuItem("B Espelhar Horizontalmente");
+		// submenuRotacionarEspelharHorizontalmente.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent arg0) {
+		// if (imagem == null) {
+		// abrirNovaImagem();
+		// } else {
+		// trocaImagem(imagem.espelhamentoHorizontal());
+		// }
+		// }
+		// });
+		// menuRotacionar.add(submenuRotacionarEspelharHorizontalmente);
+
+		// C) 180 Espelhado
+		// submenuRotacionar180Graus = new JMenuItem("C Rotacionar 180 graus");
+		// submenuRotacionar180Graus.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent arg0) {
+		// if (imagem == null) {
+		// abrirNovaImagem();
+		// } else {
+		// trocaImagem(imagem.rotacionar(180, true));
+		// }
+		// }
+		// });
 		// menuRotacionar.add(submenuRotacionar180Graus);
-		// menuRotacionar.add(submenuRotacionar270Graus);
-		// menuRotacionar.add(submenuRotacionarHorizontal);
+
+		// D) 180
+		submenuRotacionar180Graus = new JMenuItem("D Rotacionar 180 graus");
+		submenuRotacionar180Graus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.rotacionar(180, true));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionar180Graus);
+
+
+		// E) 270
+		submenuRotacionar270Graus = new JMenuItem("E Rotacionar 270 graus");
+		submenuRotacionar270Graus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.rotacionar(270, true));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionar270Graus);
+
 
 	}
 	
