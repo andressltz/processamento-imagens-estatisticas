@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -31,22 +30,18 @@ public class JanelaRotacao extends JPanel{
 	public void montaTela(){
 		setLayout(new GridLayout(0,1,0,0));
 		
-		JCheckBox antiHorario = new JCheckBox();
 		JSpinner angulo = new JSpinner(new SpinnerNumberModel(0,0,360,90));
 		
 		angulo.addChangeListener(new ChangeListener(){
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				jp.trocaImagem(jp.getImagem().rotacionar((int) angulo.getValue(),  antiHorario.isSelected()), false);
+				jp.trocaImagem(jp.getImagem().rotacionar((int) angulo.getValue()), false);
 			}
 			
 		});
 		add(new JLabel("Ângulo:"));
 		add(angulo);
-		
-		add(new JLabel("Anti-Horário:"));
-		add(antiHorario);
 		
 		JPanel panel = new JPanel();
 		add(panel);
@@ -58,7 +53,7 @@ public class JanelaRotacao extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				jp.trocaImagem(jp.getImagem().rotacionar((int) angulo.getValue(), antiHorario.isSelected()));
+				jp.trocaImagem(jp.getImagem().rotacionar((int) angulo.getValue()));
 				jp.fechaTelaConfig();
 			}
 			
