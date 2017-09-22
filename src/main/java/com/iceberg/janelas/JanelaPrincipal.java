@@ -641,16 +641,16 @@ public class JanelaPrincipal extends Janela{
 		 */
 		submenuFiltroGaussiano = new JMenuItem("Filtro Gaussiano");
 		submenuFiltroGaussiano.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (imagem == null) {
-				abrirNovaImagem();
-			} else {
-				adicionaTelaConfig("Filtro Gaussiano", new JanelaFiltroGaussiano(JanelaPrincipal.this));
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Filtro Gaussiano", new JanelaFiltroGaussiano(JanelaPrincipal.this));
+				}
 			}
-		}
-	});
-	menuFiltros.add(submenuFiltroGaussiano);
+		});
+		menuFiltros.add(submenuFiltroGaussiano);
 
 	}
 	
