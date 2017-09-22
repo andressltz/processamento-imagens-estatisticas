@@ -27,8 +27,8 @@ public class JanelaTranslacao extends JPanel{
 	public void montaTela(){
 		setLayout(new GridLayout(0,1,0,0));
 		
-		JTextField txtX = new JTextField(5);
-		JTextField txtY = new JTextField(5);
+		JTextField txtX = new JTextField("0", 5);
+		JTextField txtY = new JTextField("0", 5);
 		
 		add(new JLabel("X: "));
 		add(txtX);
@@ -40,8 +40,17 @@ public class JanelaTranslacao extends JPanel{
 		JButton btnAplicar = new JButton("Aplicar");
 		btnAplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				trataNull(txtX.getText());
+				trataNull(txtY.getText());
 				jp.trocaImagem(jp.getImagem().transladar(Integer.parseInt(txtX.getText()), Integer.parseInt(txtY.getText())));
 				jp.fechaTelaConfig();
+			}
+
+			private void trataNull(String text) {
+				if (null == text || text.trim().isEmpty()) {
+					text = "0";
+				}
+
 			}
 		});
 		panel.add(btnAplicar);
