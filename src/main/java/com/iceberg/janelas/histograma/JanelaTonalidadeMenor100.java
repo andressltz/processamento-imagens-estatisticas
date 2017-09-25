@@ -1,7 +1,9 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.histograma;
 
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
+
+import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
 
 public class JanelaTonalidadeMenor100 extends Janela {

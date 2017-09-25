@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.filtros;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class JanelaTransformacaoLivre extends JPanel{
+import com.iceberg.janelas.JanelaPrincipal;
+
+public class JanelaFiltroLivre extends JPanel{
 
 	/**
 	 * 
@@ -16,7 +18,7 @@ public class JanelaTransformacaoLivre extends JPanel{
 	private static final long serialVersionUID = 1L;
 	JanelaPrincipal jp;
 	
-	public JanelaTransformacaoLivre(JanelaPrincipal jp) {
+	public JanelaFiltroLivre(JanelaPrincipal jp) {
 		this.jp = jp;
 		montaTela();
 	}
@@ -41,15 +43,15 @@ public class JanelaTransformacaoLivre extends JPanel{
 		
 		
 		txtValue1.setText("1");
-		txtValue2.setText("0");
-		txtValue3.setText("90");
+		txtValue2.setText("1");
+		txtValue3.setText("1");
 		
-		txtValue4.setText("0");
+		txtValue4.setText("1");
 		txtValue5.setText("1");
-		txtValue6.setText("45");
+		txtValue6.setText("1");
 		
-		txtValue7.setText("0");
-		txtValue8.setText("0");
+		txtValue7.setText("1");
+		txtValue8.setText("1");
 		txtValue9.setText("1");
 		
 		matriz.add(txtValue1);
@@ -73,13 +75,13 @@ public class JanelaTransformacaoLivre extends JPanel{
 		btnAplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				double[][] matrizMult = {
-						{Double.parseDouble(txtValue1.getText()),Double.parseDouble(txtValue2.getText()),Double.parseDouble(txtValue3.getText())},
-						{Double.parseDouble(txtValue4.getText()),Double.parseDouble(txtValue5.getText()),Double.parseDouble(txtValue6.getText())},
-						{Double.parseDouble(txtValue7.getText()),Double.parseDouble(txtValue8.getText()),Double.parseDouble(txtValue9.getText())}
+				int[][] matrizMult = {
+						{Integer.parseInt(txtValue1.getText()),Integer.parseInt(txtValue2.getText()),Integer.parseInt(txtValue3.getText())},
+						{Integer.parseInt(txtValue4.getText()),Integer.parseInt(txtValue5.getText()),Integer.parseInt(txtValue6.getText())},
+						{Integer.parseInt(txtValue7.getText()),Integer.parseInt(txtValue8.getText()),Integer.parseInt(txtValue9.getText())}
 				};
 								
-				jp.trocaImagem(jp.getImagem().multiplicaMatriz(matrizMult));
+				jp.trocaImagem(jp.getImagem().convolucao(matrizMult));
 				jp.fechaTelaConfig();
 			}
 		});
