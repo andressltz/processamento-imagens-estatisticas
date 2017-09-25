@@ -84,15 +84,13 @@ public class JanelaPrincipal extends Janela{
 	private JMenuItem submenuExibirHistograma;
 	private JMenuItem submenuExibirHistogramaQuadrante1;
 
-	// Menu Médias
-	private JMenu menuMedias;
-	private JMenuItem submenuExibirMediaQuadrante_2;
-	private JMenuItem submenuExibirModaQuadrante_4;
-	private JMenuItem submenuExibirVarianciaQuadrante_12;
-	
-	// Menu quantidadePixels
-	private JMenu menuQuantidadePixels;
-	private JMenuItem menuExibirQtdPixelsInferior;
+	// Menu Estatísticas
+	private JMenu menuEstatisticas;
+	private JMenuItem submenuEstatisticasMediaQuadrante_2;
+	// C mediana quadrante 3
+	private JMenuItem submenuEstatisticasModaQuadrante_4;
+	private JMenuItem submenuEstatisticasVarianciaQuadrante_12;
+	private JMenuItem submenuEstatisticasQtdPixelsInferior;
 
 	// Menu Rotacionar
 	private JMenu menuRotacionar;
@@ -462,13 +460,13 @@ public class JanelaPrincipal extends Janela{
 
 
 		/*
-		 * Menu Médias
+		 * Menu Estatisticas
 		 */
-		menuMedias = new JMenu("Médias");
-		menuBarPrincipal.add(menuMedias);
+		menuEstatisticas = new JMenu("Estatísticas");
+		menuBarPrincipal.add(menuEstatisticas);
 
-		submenuExibirMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
-		submenuExibirMediaQuadrante_2.addActionListener(new ActionListener() {
+		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
+		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -479,10 +477,10 @@ public class JanelaPrincipal extends Janela{
 
 			}
 		});
-		menuMedias.add(submenuExibirMediaQuadrante_2);
+		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
 
-		submenuExibirModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
-		submenuExibirModaQuadrante_4.addActionListener(new ActionListener() {
+		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
+		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -492,10 +490,10 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuMedias.add(submenuExibirModaQuadrante_4);
+		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
 
-		submenuExibirVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
-		submenuExibirVarianciaQuadrante_12.addActionListener(new ActionListener() {
+		submenuEstatisticasVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
+		submenuEstatisticasVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -505,16 +503,10 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuMedias.add(submenuExibirVarianciaQuadrante_12);
+		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
 
-		/*
-		 * Menu Quantidade de Pixels
-		 */
-		menuQuantidadePixels = new JMenu("Quantidade de Pixels");
-		menuBarPrincipal.add(menuQuantidadePixels);
-
-		menuExibirQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
-		menuExibirQtdPixelsInferior.addActionListener(new ActionListener() {
+		submenuEstatisticasQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
+		submenuEstatisticasQtdPixelsInferior.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (imagem == null) {
@@ -524,7 +516,7 @@ public class JanelaPrincipal extends Janela{
 				}
 			}
 		});
-		menuQuantidadePixels.add(menuExibirQtdPixelsInferior);
+		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
 
 		/*
 		 * Menu Rotacionar
