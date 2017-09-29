@@ -1,0 +1,49 @@
+package com.iceberg.utils;
+
+import java.awt.image.BufferedImage;
+
+import com.iceberg.sistema.Imagem;
+
+public class Filtros {
+
+	public static BufferedImage aplicaFiltroGaussiano(Imagem imagem) {
+		Imagem novaImagem = imagem.getCopia();
+		int larguraMenor = imagem.getBufferedImage().getWidth() - 1;
+		int alturaMenor = imagem.getBufferedImage().getHeight() - 1;
+
+		for (int i = 1; i < alturaMenor; i++) {
+			for (int j = 1; j < larguraMenor; j++) {
+
+				double z = 0;
+				for (int x = 0; x < 3; x++) {
+					for (int y = 0; y < 3; y++) {
+						// TODO não sei como pegar a cor, se é um destes e se é isso mesmo que precisa pro gaus
+						int corRGB = imagem.getBufferedImage().getRGB(j + (x - 1), i + (y - 1));
+						int corCinza = imagem.getTomCinza(j + (x - 1), i + (y - 1));
+						// Color color = imagem.GetPixel(j + (x - 1), i + (y - 1));
+						// z += color.R * mascara[x, y];
+						// z += corCinza * criaMatriz(x, y);
+						z = 0;
+					}
+				}
+
+				// TODO fazer
+				// byte novoValor = Convert.ToByte( z / 16);
+				// novaImagem.SetPixel(j, i, novoValor, novoValor, novoValor, 255);
+			}
+
+		}
+
+		return novaImagem.getBufferedImage();
+	}
+
+	private static int[][] criaMatriz(int x, int y) {
+		int[][] matrizBase = {
+				{ 1, 1, 1 },
+				{ 1, 1, 1 },
+				{ 1, 1, 1 },
+		};
+		return matrizBase;
+	}
+
+}

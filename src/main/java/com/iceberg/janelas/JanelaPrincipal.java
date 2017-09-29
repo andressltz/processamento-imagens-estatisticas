@@ -23,20 +23,20 @@ import com.iceberg.janelas.editar.JanelaRedimensionar;
 //import com.iceberg.janelas.editar.JanelaRotacao;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
+import com.iceberg.janelas.estatisticas.JanelaExibirQuantidadePixelsInferior;
+import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
+import com.iceberg.janelas.estatisticas.JanelaModaQuadrante_4;
+import com.iceberg.janelas.estatisticas.JanelaVarianciaQuadrante_12;
 import com.iceberg.janelas.filtros.JanelaBordas;
-import com.iceberg.janelas.filtros.JanelaFiltroGaussiano;
 import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
 import com.iceberg.janelas.histograma.JanelaHistograma;
 import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
 import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
-import com.iceberg.janelas.media.JanelaMediaQuadrante_2;
-import com.iceberg.janelas.media.JanelaModaQuadrante_4;
-import com.iceberg.janelas.media.JanelaVarianciaQuadrante_12;
-import com.iceberg.janelas.qntpixels.JanelaExibirQuantidadePixelsInferior;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
+import com.iceberg.utils.Filtros;
 
 public class JanelaPrincipal extends Janela {
 	private static final long serialVersionUID = 1L;
@@ -126,7 +126,6 @@ public class JanelaPrincipal extends Janela {
 		getContentPane().add(pnlConfig, BorderLayout.WEST);
 
 		MontaJanela(1300, 800, true);
-
 	}
 
 	public void carregarMenu() {
@@ -446,7 +445,7 @@ public class JanelaPrincipal extends Janela {
 				if (imagem == null) {
 					abrirNovaImagem();
 				} else {
-					adicionaTelaConfig("Filtro Gaussiano", new JanelaFiltroGaussiano(JanelaPrincipal.this));
+					trocaImagem(Filtros.aplicaFiltroGaussiano(imagem));
 				}
 			}
 		});

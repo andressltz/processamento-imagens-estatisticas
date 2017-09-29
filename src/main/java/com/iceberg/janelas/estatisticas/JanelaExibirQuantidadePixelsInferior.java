@@ -1,4 +1,4 @@
-package com.iceberg.janelas.qntpixels;
+package com.iceberg.janelas.estatisticas;
 
 import java.awt.Label;
 import java.awt.image.BufferedImage;
