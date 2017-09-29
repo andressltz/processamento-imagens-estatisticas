@@ -39,9 +39,9 @@ public class Filtros {
 
 	private static int[][] criaMatriz(int x, int y) {
 		int[][] matrizBase = {
-				{ 1, 1, 1 },
-				{ 1, 1, 1 },
-				{ 1, 1, 1 },
+				{ 1, 2, 1 },
+				{ 2, 4, 2 },
+				{ 1, 2, 1 }
 		};
 		return matrizBase;
 	}
