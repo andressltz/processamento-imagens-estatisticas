@@ -134,11 +134,8 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					restauraImagem();
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionarRestOriginal);
@@ -148,12 +145,8 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionarEspelharHorizontal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
+				validaImagemJaCarregada();
 					trocaImagem(imagem.espelhamentoHorizontal());
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionarEspelharHorizontal);
@@ -163,12 +156,9 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionarEspelharVertical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					restauraImagem();
 					trocaImagem(imagem.espelhamentoVertical());
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionarEspelharVertical);
@@ -178,12 +168,9 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionar180Graus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					restauraImagem();
 					trocaImagem(imagem.rotacionar(180));
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionar180Graus);
@@ -193,12 +180,9 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionar270Graus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					restauraImagem();
 					trocaImagem(imagem.rotacionar(90));
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionar270Graus);
@@ -208,11 +192,8 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionarTransladar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionarTransladar);
@@ -222,11 +203,8 @@ public class JanelaPrincipal extends Janela {
 		submenuRotacionarRedimensionar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
-				}
 			}
 		});
 		menuRotacionar.add(submenuRotacionarRedimensionar);
@@ -244,11 +222,8 @@ public class JanelaPrincipal extends Janela {
 		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					new JanelaMediaQuadrante_2(imagem);
-				}
 
 			}
 		});
@@ -258,11 +233,8 @@ public class JanelaPrincipal extends Janela {
 		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					new JanelaModaQuadrante_4(imagem);
-				}
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
@@ -271,11 +243,8 @@ public class JanelaPrincipal extends Janela {
 		submenuEstatisticasVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					new JanelaVarianciaQuadrante_12(imagem);
-				}
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
@@ -284,11 +253,8 @@ public class JanelaPrincipal extends Janela {
 		submenuEstatisticasQtdPixelsInferior.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
+				validaImagemJaCarregada();
 					new JanelaExibirQuantidadePixelsInferior(imagem);
-				}
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
@@ -298,10 +264,12 @@ public class JanelaPrincipal extends Janela {
 		// Menu Histograma
 		JMenuItem submenuExibirHistograma;
 		JMenuItem submenuExibirHistogramaQuadrante1;
+
 		submenuExibirHistograma = new JMenuItem("Exibir Histograma");
 		submenuExibirHistograma.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
 				new JanelaHistograma(imagem);
 			}
 		});
@@ -311,6 +279,7 @@ public class JanelaPrincipal extends Janela {
 		submenuExibirHistogramaQuadrante1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
 				new JanelaHistogramaQuadrante_1(imagem);
 			}
 		});
@@ -341,8 +310,8 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.maioresMediaBranco(imagem).getBufferedImage());
-
 			}
 
 		});
@@ -352,10 +321,9 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_20.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.maioresModaPreto(imagem).getBufferedImage());
-
 			}
-
 		});
 		menuFiltrosDiversos.add(submenuFiltro_20);
 
@@ -363,10 +331,9 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_30.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-
 			}
-
 		});
 		menuFiltrosDiversos.add(submenuFiltro_30);
 
@@ -374,10 +341,9 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_35.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-
 			}
-
 		});
 		menuFiltrosDiversos.add(submenuFiltro_35);
 
@@ -385,6 +351,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_40.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.medianaQuadrante3(imagem).getBufferedImage());
 			}
 		});
@@ -394,6 +361,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_50.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.maioresMediana0MenoresMedia255(imagem).getBufferedImage());
 			}
 		});
@@ -403,6 +371,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_60.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.converteParaTonsDeCinza(imagem).getBufferedImage());
 			}
 		});
@@ -417,11 +386,9 @@ public class JanelaPrincipal extends Janela {
 						{ 1, 1, 1 },
 						{ 1, 1, 1 }
 				};
-
+				validaImagemJaCarregada();
 				trocaImagem(imagem.convolucao(media));
-
 			}
-
 		});
 		menuFiltros.add(submenuFiltro_70);
 
@@ -434,11 +401,9 @@ public class JanelaPrincipal extends Janela {
 						{ 2, 4, 2 },
 						{ 1, 2, 1 }
 				};
-
+				validaImagemJaCarregada();
 				trocaImagem(imagem.convolucao(gausiana));
-
 			}
-
 		});
 		menuFiltros.add(submenuFiltro_80);
 
@@ -446,6 +411,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_90.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Filtro de Limiarização", new JanelaLimiarizacao(JanelaPrincipal.this));
 			}
 		});
@@ -455,6 +421,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_110.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Filtro Livre", new JanelaFiltroLivre(JanelaPrincipal.this));
 			}
 		});
@@ -464,6 +431,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_120.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Detecção de Bordas", new JanelaBordas(JanelaPrincipal.this));
 			}
 		});
@@ -473,6 +441,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_130.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Testeeeeeeeeeeeeeeee", new JanelaBordas(JanelaPrincipal.this));
 			}
 		});
@@ -482,6 +451,7 @@ public class JanelaPrincipal extends Janela {
 		submenuFiltro_131.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Menor 100", new JanelaTonalidadeMenor100(imagem));
 			}
 		});
@@ -498,10 +468,9 @@ public class JanelaPrincipal extends Janela {
 		submenuBrilho.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Brilho", new JanelaBrilho(JanelaPrincipal.this));
-
 			}
-
 		});
 
 		menuEditar.add(submenuBrilho);
@@ -509,6 +478,7 @@ public class JanelaPrincipal extends Janela {
 		submenuContraste.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Contraste", new JanelaContraste(JanelaPrincipal.this));
 			}
 		});
@@ -519,6 +489,7 @@ public class JanelaPrincipal extends Janela {
 		submenuTransfLivre.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				adicionaTelaConfig("Transformação Livre", new JanelaTransformacaoLivre(JanelaPrincipal.this));
 			}
 		});
@@ -529,6 +500,7 @@ public class JanelaPrincipal extends Janela {
 		submenuRestOriginal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				restauraImagem();
 			}
 		});
@@ -552,14 +524,10 @@ public class JanelaPrincipal extends Janela {
 					imagem = new Imagem(arquivo.abrir());
 					setTitle(arquivo.getArquivo().getName());
 					carregaImagem(imagem);
-
 				} catch (Exception e2) {
 					System.out.println("Arquivo: " + e2.getMessage());
-
 				}
-
 			}
-
 		});
 
 		menuArquivo.add(submenuAbrir);
@@ -568,10 +536,9 @@ public class JanelaPrincipal extends Janela {
 		submenuSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				arquivo.salvar(imagem);
-
 			}
-
 		});
 
 		menuArquivo.add(submenuSalvar);
@@ -579,10 +546,9 @@ public class JanelaPrincipal extends Janela {
 		submenuSalvarcomo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				arquivo.salvarComo(imagem);
-
 			}
-
 		});
 
 		menuArquivo.add(submenuSalvarcomo);
@@ -591,10 +557,9 @@ public class JanelaPrincipal extends Janela {
 		submenuInformacoes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
 				new JanelaPropriedades(arquivo, imagem);
-
 			}
-
 		});
 
 		menuArquivo.add(submenuInformacoes);
@@ -603,9 +568,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
-
 			}
-
 		});
 
 		menuArquivo.add(submenuSair);
@@ -672,6 +635,12 @@ public class JanelaPrincipal extends Janela {
 		} catch (Exception e2) {
 			System.out.println("Arquivo: " + e2.getMessage());
 
+		}
+	}
+
+	private void validaImagemJaCarregada() {
+		if (imagem == null) {
+			abrirNovaImagem();
 		}
 	}
 
