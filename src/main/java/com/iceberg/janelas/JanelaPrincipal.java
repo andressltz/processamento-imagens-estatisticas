@@ -37,65 +37,10 @@ import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
 
 public class JanelaPrincipal extends Janela {
+
 	private static final long serialVersionUID = 1L;
 
 	private JMenuBar menuBarPrincipal;
-
-	// Menu Arquivo
-	private JMenu menuArquivo;
-	private JMenuItem submenuAbrir;
-	private JMenuItem submenuSalvar;
-	private JMenuItem submenuSalvarcomo;
-	private JMenuItem submenuInformacoes;
-	private JMenuItem submenuSair;
-
-	// Menu Editar
-	private JMenu menuEditar;
-	private JMenuItem submenuBrilho;
-	private JMenuItem submenuContraste;
-	private JMenuItem submenuTransfLivre;
-	private JMenuItem submenuRestOriginal;
-
-	// Menu Efeitos
-	private JMenu menuFiltros;
-	private JMenu menuFiltrosDiversos;
-	private JMenuItem submenuFiltro_10;
-	private JMenuItem submenuFiltro_20;
-	private JMenuItem submenuFiltro_30;
-	private JMenuItem submenuFiltro_35;
-	private JMenuItem submenuFiltro_40;
-	private JMenuItem submenuFiltro_50;
-	private JMenuItem submenuFiltro_60;
-	private JMenuItem submenuFiltro_70;
-	private JMenuItem submenuFiltro_80;
-	private JMenuItem submenuFiltro_90;
-	private JMenuItem submenuFiltro_110;
-	private JMenuItem submenuFiltro_120;
-	private JMenuItem submenuFiltro_130;
-	private JMenuItem submenuFiltro_131;
-
-	// Menu Histograma
-	private JMenu menuHistograma;
-	private JMenuItem submenuExibirHistograma;
-	private JMenuItem submenuExibirHistogramaQuadrante1;
-
-	// Menu Estatísticas
-	private JMenu menuEstatisticas;
-	private JMenuItem submenuEstatisticasMediaQuadrante_2;
-	// C mediana quadrante 3
-	private JMenuItem submenuEstatisticasModaQuadrante_4;
-	private JMenuItem submenuEstatisticasVarianciaQuadrante_12;
-	private JMenuItem submenuEstatisticasQtdPixelsInferior;
-
-	// Menu Rotacionar
-	private JMenu menuRotacionar;
-	private JMenuItem submenuRotacionarRestOriginal;
-	private JMenuItem submenuRotacionarEspelharHorizontal;
-	private JMenuItem submenuRotacionarEspelharVertical;
-	private JMenuItem submenuRotacionar180Graus;
-	private JMenuItem submenuRotacionar270Graus;
-	private JMenuItem submenuRotacionarTransladar;
-	private JMenuItem submenuRotacionarRedimensionar;
 
 	// Painel lateral
 	private JPanel pnlConfig;
@@ -119,136 +64,277 @@ public class JanelaPrincipal extends Janela {
 		getContentPane().add(pnlConfig, BorderLayout.WEST);
 
 		MontaJanela(1300, 800, true);
-
 	}
 
-	public void carregarMenu() {
+	private void carregarMenu() {
+		JMenu menuArquivo;
+		JMenu menuEditar;
+		JMenu menuFiltros;
+		JMenu menuHistograma;
+		JMenu menuEstatisticas;
+		JMenu menuRotacionar;
+
 		menuBarPrincipal = new JMenuBar();
-
-		menuArquivo = new JMenu("Arquivo");
-		menuBarPrincipal.add(menuArquivo);
-
-		submenuAbrir = new JMenuItem("Abrir");
-		submenuAbrir.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					arquivo = new Arquivo();
-					imagem = new Imagem(arquivo.abrir());
-					setTitle(arquivo.getArquivo().getName());
-					carregaImagem(imagem);
-
-				} catch (Exception e2) {
-					System.out.println("Arquivo: " + e2.getMessage());
-
-				}
-
-			}
-
-		});
 
 		/*
 		 * Menu Arquivo
 		 */
-		menuArquivo.add(submenuAbrir);
-		menuArquivo.addSeparator();
-		submenuSalvar = new JMenuItem("Salvar");
-		submenuSalvar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				arquivo.salvar(imagem);
-
-			}
-
-		});
-
-		menuArquivo.add(submenuSalvar);
-		submenuSalvarcomo = new JMenuItem("Salvar como...");
-		submenuSalvarcomo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				arquivo.salvarComo(imagem);
-
-			}
-
-		});
-
-		menuArquivo.add(submenuSalvarcomo);
-		menuArquivo.addSeparator();
-		submenuInformacoes = new JMenuItem("Informações");
-		submenuInformacoes.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new JanelaPropriedades(arquivo, imagem);
-
-			}
-
-		});
-
-		menuArquivo.add(submenuInformacoes);
-		submenuSair = new JMenuItem("Sair");
-		submenuSair.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-
-		});
-
-		menuArquivo.add(submenuSair);
+		menuArquivo = new JMenu("Arquivo");
+		menuBarPrincipal.add(menuArquivo);
+		criaMenuArquivo(menuArquivo);
 
 		/*
 		 * Menu Editar
 		 */
 		menuEditar = new JMenu("Editar");
 		menuBarPrincipal.add(menuEditar);
-		submenuBrilho = new JMenuItem("Brilho");
-		submenuBrilho.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				adicionaTelaConfig("Brilho", new JanelaBrilho(JanelaPrincipal.this));
-
-			}
-
-		});
-
-		menuEditar.add(submenuBrilho);
-		submenuContraste = new JMenuItem("Contraste");
-		submenuContraste.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				adicionaTelaConfig("Contraste", new JanelaContraste(JanelaPrincipal.this));
-			}
-		});
-
-		menuEditar.add(submenuContraste);
-
-		submenuTransfLivre = new JMenuItem("Transformação Livre");
-		submenuTransfLivre.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				adicionaTelaConfig("Transformação Livre", new JanelaTransformacaoLivre(JanelaPrincipal.this));
-			}
-		});
-
-		menuEditar.add(submenuTransfLivre);
-		menuEditar.addSeparator();
-		submenuRestOriginal = new JMenuItem("Restaurar Original");
-		submenuRestOriginal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				restauraImagem();
-			}
-		});
-		menuEditar.add(submenuRestOriginal);
+		criaMenuEditar(menuEditar);
 
 		/*
 		 * Menu Filtros
 		 */
 		menuFiltros = new JMenu("Filtros");
 		menuBarPrincipal.add(menuFiltros);
+		criaMenuFiltros(menuFiltros);
+
+		/*
+		 * Menu Histograma
+		 */
+		menuHistograma = new JMenu("Histograma");
+		menuBarPrincipal.add(menuHistograma);
+		criaMenuHistograma(menuHistograma);
+
+		/*
+		 * Menu Estatisticas
+		 */
+		menuEstatisticas = new JMenu("Estatísticas");
+		menuBarPrincipal.add(menuEstatisticas);
+		criaMenuEstatisticas(menuEstatisticas);
+
+		/*
+		 * Menu Rotacionar
+		 */
+		menuRotacionar = new JMenu("Rotacionar");
+		menuBarPrincipal.add(menuRotacionar);
+		criaMenuRotacionar(menuRotacionar);
+	}
+
+	private void criaMenuRotacionar(JMenu menuRotacionar) {
+		// Menu Rotacionar
+		JMenuItem submenuRotacionarRestOriginal;
+		JMenuItem submenuRotacionarEspelharHorizontal;
+		JMenuItem submenuRotacionarEspelharVertical;
+		JMenuItem submenuRotacionar180Graus;
+		JMenuItem submenuRotacionar270Graus;
+		JMenuItem submenuRotacionarTransladar;
+		JMenuItem submenuRotacionarRedimensionar;
+
+		// A) Original
+		submenuRotacionarRestOriginal = new JMenuItem("Restaurar imagem original");
+		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarRestOriginal);
+
+		// B) Espelhar Horizontal
+		submenuRotacionarEspelharHorizontal = new JMenuItem("Espelhar Horizontalmente");
+		submenuRotacionarEspelharHorizontal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.espelhamentoHorizontal());
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarEspelharHorizontal);
+
+		// C) Espelhar Vertical
+		submenuRotacionarEspelharVertical = new JMenuItem("Espelhar Verticalmente");
+		submenuRotacionarEspelharVertical.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.espelhamentoVertical());
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarEspelharVertical);
+
+		// D) 180
+		submenuRotacionar180Graus = new JMenuItem("Rotacionar 180 graus");
+		submenuRotacionar180Graus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.rotacionar(180));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionar180Graus);
+
+		// E) 270
+		submenuRotacionar270Graus = new JMenuItem("Rotacionar 270 graus");
+		submenuRotacionar270Graus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					restauraImagem();
+					trocaImagem(imagem.rotacionar(90));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionar270Graus);
+
+		// F) Transladar
+		submenuRotacionarTransladar = new JMenuItem("Transladar");
+		submenuRotacionarTransladar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarTransladar);
+
+		// G) Redimensionar
+		submenuRotacionarRedimensionar = new JMenuItem("Redimensionar");
+		submenuRotacionarRedimensionar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
+				}
+			}
+		});
+		menuRotacionar.add(submenuRotacionarRedimensionar);
+	}
+
+	private void criaMenuEstatisticas(JMenu menuEstatisticas) {
+		// Menu Estatísticas
+		JMenuItem submenuEstatisticasMediaQuadrante_2;
+		// C mediana quadrante 3
+		JMenuItem submenuEstatisticasModaQuadrante_4;
+		JMenuItem submenuEstatisticasVarianciaQuadrante_12;
+		JMenuItem submenuEstatisticasQtdPixelsInferior;
+
+		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
+		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaMediaQuadrante_2(imagem);
+				}
+
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
+
+		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
+		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaModaQuadrante_4(imagem);
+				}
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
+
+		submenuEstatisticasVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
+		submenuEstatisticasVarianciaQuadrante_12.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaVarianciaQuadrante_12(imagem);
+				}
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
+
+		submenuEstatisticasQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
+		submenuEstatisticasQtdPixelsInferior.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					new JanelaExibirQuantidadePixelsInferior(imagem);
+				}
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
+	}
+
+	private void criaMenuHistograma(JMenu menuHistograma) {
+		// Menu Histograma
+		JMenuItem submenuExibirHistograma;
+		JMenuItem submenuExibirHistogramaQuadrante1;
+		submenuExibirHistograma = new JMenuItem("Exibir Histograma");
+		submenuExibirHistograma.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new JanelaHistograma(imagem);
+			}
+		});
+		menuHistograma.add(submenuExibirHistograma);
+
+		submenuExibirHistogramaQuadrante1 = new JMenuItem("Exibir Histograma Quadrante 1");
+		submenuExibirHistogramaQuadrante1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new JanelaHistogramaQuadrante_1(imagem);
+			}
+		});
+		menuHistograma.add(submenuExibirHistogramaQuadrante1);
+	}
+
+	private void criaMenuFiltros(JMenu menuFiltros) {
+		// Menu Filtros
+		JMenu menuFiltrosDiversos;
+		JMenuItem submenuFiltro_10;
+		JMenuItem submenuFiltro_20;
+		JMenuItem submenuFiltro_30;
+		JMenuItem submenuFiltro_35;
+		JMenuItem submenuFiltro_40;
+		JMenuItem submenuFiltro_50;
+		JMenuItem submenuFiltro_60;
+		JMenuItem submenuFiltro_70;
+		JMenuItem submenuFiltro_80;
+		JMenuItem submenuFiltro_90;
+		JMenuItem submenuFiltro_110;
+		JMenuItem submenuFiltro_120;
+		JMenuItem submenuFiltro_130;
+		JMenuItem submenuFiltro_131;
+
 		menuFiltrosDiversos = new JMenu("Diversos");
 		menuFiltros.add(menuFiltrosDiversos);
 		submenuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
@@ -400,197 +486,129 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltros.add(submenuFiltro_131);
+	}
 
-		/*
-		 * Menu Histograma
-		 */
-		menuHistograma = new JMenu("Histograma");
-		menuBarPrincipal.add(menuHistograma);
-
-		submenuExibirHistograma = new JMenuItem("Exibir Histograma");
-		submenuExibirHistograma.addActionListener(new ActionListener() {
+	private void criaMenuEditar(JMenu menuEditar) {
+		// Menu Editar
+		JMenuItem submenuBrilho;
+		JMenuItem submenuContraste;
+		JMenuItem submenuTransfLivre;
+		JMenuItem submenuRestOriginal;
+		submenuBrilho = new JMenuItem("Brilho");
+		submenuBrilho.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new JanelaHistograma(imagem);
-			}
-		});
-		menuHistograma.add(submenuExibirHistograma);
+				adicionaTelaConfig("Brilho", new JanelaBrilho(JanelaPrincipal.this));
 
-		submenuExibirHistogramaQuadrante1 = new JMenuItem("Exibir Histograma Quadrante 1");
-		submenuExibirHistogramaQuadrante1.addActionListener(new ActionListener() {
+			}
+
+		});
+
+		menuEditar.add(submenuBrilho);
+		submenuContraste = new JMenuItem("Contraste");
+		submenuContraste.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new JanelaHistogramaQuadrante_1(imagem);
+				adicionaTelaConfig("Contraste", new JanelaContraste(JanelaPrincipal.this));
 			}
 		});
-		menuHistograma.add(submenuExibirHistogramaQuadrante1);
 
-		/*
-		 * Menu Estatisticas
-		 */
-		menuEstatisticas = new JMenu("Estatísticas");
-		menuBarPrincipal.add(menuEstatisticas);
+		menuEditar.add(submenuContraste);
 
-		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
-		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					new JanelaMediaQuadrante_2(imagem);
-				}
-
-			}
-		});
-		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
-
-		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
-		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					new JanelaModaQuadrante_4(imagem);
-				}
-			}
-		});
-		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
-
-		submenuEstatisticasVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
-		submenuEstatisticasVarianciaQuadrante_12.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					new JanelaVarianciaQuadrante_12(imagem);
-				}
-			}
-		});
-		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
-
-		submenuEstatisticasQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
-		submenuEstatisticasQtdPixelsInferior.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					new JanelaExibirQuantidadePixelsInferior(imagem);
-				}
-			}
-		});
-		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
-
-		/*
-		 * Menu Rotacionar
-		 */
-		menuRotacionar = new JMenu("Rotacionar");
-		menuBarPrincipal.add(menuRotacionar);
-
-		// A) Original
-		submenuRotacionarRestOriginal = new JMenuItem("Restaurar imagem original");
-		submenuRotacionarRestOriginal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
-				}
-			}
-		});
-		menuRotacionar.add(submenuRotacionarRestOriginal);
-
-		// B) Espelhar Horizontal
-		submenuRotacionarEspelharHorizontal = new JMenuItem("Espelhar Horizontalmente");
-		submenuRotacionarEspelharHorizontal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
-					trocaImagem(imagem.espelhamentoHorizontal());
-				}
-			}
-		});
-		menuRotacionar.add(submenuRotacionarEspelharHorizontal);
-
-		// C) Espelhar Vertical
-		submenuRotacionarEspelharVertical = new JMenuItem("Espelhar Verticalmente");
-		submenuRotacionarEspelharVertical.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
-					trocaImagem(imagem.espelhamentoVertical());
-				}
-			}
-		});
-		menuRotacionar.add(submenuRotacionarEspelharVertical);
-
-		// D) 180
-		submenuRotacionar180Graus = new JMenuItem("Rotacionar 180 graus");
-		submenuRotacionar180Graus.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
-					trocaImagem(imagem.rotacionar(180));
-				}
-			}
-		});
-		menuRotacionar.add(submenuRotacionar180Graus);
-
-		// E) 270
-		submenuRotacionar270Graus = new JMenuItem("Rotacionar 270 graus");
-		submenuRotacionar270Graus.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					restauraImagem();
-					trocaImagem(imagem.rotacionar(90));
-				}
-			}
-		});
-		menuRotacionar.add(submenuRotacionar270Graus);
-
-		// F) Transladar
-		submenuRotacionarTransladar = new JMenuItem("Transladar");
-		submenuRotacionarTransladar.addActionListener(new ActionListener() {
+		submenuTransfLivre = new JMenuItem("Transformação Livre");
+		submenuTransfLivre.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					adicionaTelaConfig("Translação", new JanelaTranslacao(JanelaPrincipal.this));
-				}
+				adicionaTelaConfig("Transformação Livre", new JanelaTransformacaoLivre(JanelaPrincipal.this));
 			}
 		});
-		menuRotacionar.add(submenuRotacionarTransladar);
 
-		// G) Redimensionar
-		submenuRotacionarRedimensionar = new JMenuItem("Redimensionar");
-		submenuRotacionarRedimensionar.addActionListener(new ActionListener() {
+		menuEditar.add(submenuTransfLivre);
+		menuEditar.addSeparator();
+		submenuRestOriginal = new JMenuItem("Restaurar Original");
+		submenuRestOriginal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (imagem == null) {
-					abrirNovaImagem();
-				} else {
-					adicionaTelaConfig("Redimensionar", new JanelaRedimensionar(JanelaPrincipal.this));
-				}
+				restauraImagem();
 			}
 		});
-		menuRotacionar.add(submenuRotacionarRedimensionar);
+		menuEditar.add(submenuRestOriginal);
+	}
+
+	private void criaMenuArquivo(JMenu menuArquivo) {
+		// Menu Arquivo
+		JMenuItem submenuAbrir;
+		JMenuItem submenuSalvar;
+		JMenuItem submenuSalvarcomo;
+		JMenuItem submenuInformacoes;
+		JMenuItem submenuSair;
+
+		submenuAbrir = new JMenuItem("Abrir");
+		submenuAbrir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					arquivo = new Arquivo();
+					imagem = new Imagem(arquivo.abrir());
+					setTitle(arquivo.getArquivo().getName());
+					carregaImagem(imagem);
+
+				} catch (Exception e2) {
+					System.out.println("Arquivo: " + e2.getMessage());
+
+				}
+
+			}
+
+		});
+
+		menuArquivo.add(submenuAbrir);
+		menuArquivo.addSeparator();
+		submenuSalvar = new JMenuItem("Salvar");
+		submenuSalvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				arquivo.salvar(imagem);
+
+			}
+
+		});
+
+		menuArquivo.add(submenuSalvar);
+		submenuSalvarcomo = new JMenuItem("Salvar como...");
+		submenuSalvarcomo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				arquivo.salvarComo(imagem);
+
+			}
+
+		});
+
+		menuArquivo.add(submenuSalvarcomo);
+		menuArquivo.addSeparator();
+		submenuInformacoes = new JMenuItem("Informações");
+		submenuInformacoes.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new JanelaPropriedades(arquivo, imagem);
+
+			}
+
+		});
+
+		menuArquivo.add(submenuInformacoes);
+		submenuSair = new JMenuItem("Sair");
+		submenuSair.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+
+		});
+
+		menuArquivo.add(submenuSair);
 	}
 
 	private void carregaImagem(Imagem im) {
