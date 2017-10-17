@@ -610,7 +610,7 @@ public class JanelaPrincipal extends Janela {
 				if (imagem == null) {
 					abrirNovaImagem();
 				} else {
-					new JanelaMediaQuadrante_2(imagem);
+					adicionaTelaConfig("Erosão", new JanelaFiltroLivre(JanelaPrincipal.this));
 				}
 
 			}
@@ -624,7 +624,7 @@ public class JanelaPrincipal extends Janela {
 				if (imagem == null) {
 					abrirNovaImagem();
 				} else {
-					new JanelaMediaQuadrante_2(imagem);
+					adicionaTelaConfig("Dilatação", new JanelaFiltroLivre(JanelaPrincipal.this));
 				}
 
 			}
