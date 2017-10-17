@@ -20,7 +20,6 @@ import javax.swing.border.TitledBorder;
 import com.iceberg.janelas.editar.JanelaBrilho;
 import com.iceberg.janelas.editar.JanelaContraste;
 import com.iceberg.janelas.editar.JanelaRedimensionar;
-//import com.iceberg.janelas.editar.JanelaRotacao;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
 import com.iceberg.janelas.filtros.JanelaBordas;
@@ -54,10 +53,6 @@ public class JanelaPrincipal extends Janela {
 	private JMenu menuEditar;
 	private JMenuItem submenuBrilho;
 	private JMenuItem submenuContraste;
-	// private JMenuItem submenuRotacionar;
-	// private JMenu submenuEspelhar;
-	// private JMenuItem submenuVertical;
-	// private JMenuItem submenuHorizontal;
 	private JMenuItem submenuTransfLivre;
 	private JMenuItem submenuRestOriginal;
 
@@ -229,34 +224,6 @@ public class JanelaPrincipal extends Janela {
 		});
 
 		menuEditar.add(submenuContraste);
-		// submenuRotacionar = new JMenuItem("Rotacionar");
-		// submenuRotacionar.addActionListener(new ActionListener(){
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// adicionaTelaConfig("Rotação", new JanelaRotacao(JanelaPrincipal.this));
-		// }
-		// });
-		// menuEditar.add(submenuRotacionar);
-
-		// submenuEspelhar = new JMenu("Espelhar");
-		// menuEditar.add(submenuEspelhar);
-		// submenuVertical = new JMenuItem("Vertical");
-		// submenuVertical.addActionListener(new ActionListener(){
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// trocaImagem(imagem.espelhamentoVertical());
-		// }
-		// });
-		// submenuEspelhar.add(submenuVertical);
-		//
-		// submenuHorizontal = new JMenuItem("Horizontal");
-		// submenuHorizontal.addActionListener(new ActionListener(){
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// trocaImagem(imagem.espelhamentoHorizontal());
-		// }
-		// });
-		// submenuEspelhar.add(submenuHorizontal);
 
 		submenuTransfLivre = new JMenuItem("Transformação Livre");
 		submenuTransfLivre.addActionListener(new ActionListener() {
