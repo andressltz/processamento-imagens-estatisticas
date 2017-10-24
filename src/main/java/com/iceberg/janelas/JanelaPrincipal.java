@@ -22,16 +22,16 @@ import com.iceberg.janelas.editar.JanelaContraste;
 import com.iceberg.janelas.editar.JanelaRedimensionar;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
+import com.iceberg.janelas.estatisticas.JanelaExibirQuantidadePixelsInferior;
+import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
+import com.iceberg.janelas.estatisticas.JanelaModaQuadrante_4;
+import com.iceberg.janelas.estatisticas.JanelaVarianciaQuadrante_12;
 import com.iceberg.janelas.filtros.JanelaBordas;
 import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
 import com.iceberg.janelas.histograma.JanelaHistograma;
 import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
 import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
-import com.iceberg.janelas.media.JanelaMediaQuadrante_2;
-import com.iceberg.janelas.media.JanelaModaQuadrante_4;
-import com.iceberg.janelas.media.JanelaVarianciaQuadrante_12;
-import com.iceberg.janelas.qntpixels.JanelaExibirQuantidadePixelsInferior;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
@@ -297,12 +297,12 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_50;
 		JMenuItem submenuFiltro_60;
 		JMenuItem submenuFiltro_70;
-		JMenuItem submenuFiltro_80;
 		JMenuItem submenuFiltro_90;
 		JMenuItem submenuFiltro_110;
 		JMenuItem submenuFiltro_120;
 		JMenuItem submenuFiltro_130;
 		JMenuItem submenuFiltro_131;
+		JMenuItem submenuFiltroGaussiano;
 
 		menuFiltrosDiversos = new JMenu("Diversos");
 		menuFiltros.add(menuFiltrosDiversos);
@@ -392,21 +392,6 @@ public class JanelaPrincipal extends Janela {
 		});
 		menuFiltros.add(submenuFiltro_70);
 
-		submenuFiltro_80 = new JMenuItem("Filtro Gausiano");
-		submenuFiltro_80.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int[][] gausiana = {
-						{ 1, 2, 1 },
-						{ 2, 4, 2 },
-						{ 1, 2, 1 }
-				};
-				validaImagemJaCarregada();
-				trocaImagem(imagem.convolucao(gausiana));
-			}
-		});
-		menuFiltros.add(submenuFiltro_80);
-
 		submenuFiltro_90 = new JMenuItem("Filtro Limiar");
 		submenuFiltro_90.addActionListener(new ActionListener() {
 			@Override
@@ -456,6 +441,21 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltros.add(submenuFiltro_131);
+
+		submenuFiltroGaussiano = new JMenuItem("Filtro Gaussiano");
+		submenuFiltroGaussiano.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
+				int[][] gausiana = {
+						{ 1, 2, 1 },
+						{ 2, 4, 2 },
+						{ 1, 2, 1 }
+				};
+				trocaImagem(imagem.convolucao(gausiana));
+			}
+		});
+		menuFiltros.add(submenuFiltroGaussiano);
 	}
 
 	private void criaMenuEditar(JMenu menuEditar) {
@@ -570,7 +570,6 @@ public class JanelaPrincipal extends Janela {
 				System.exit(0);
 			}
 		});
-
 		menuArquivo.add(submenuSair);
 	}
 
