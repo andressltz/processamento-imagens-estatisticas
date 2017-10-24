@@ -35,7 +35,6 @@ import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
-import com.iceberg.utils.Filtros;
 
 public class JanelaPrincipal extends Janela {
 
@@ -298,7 +297,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_50;
 		JMenuItem submenuFiltro_60;
 		JMenuItem submenuFiltro_70;
-		JMenuItem submenuFiltro_80;
 		JMenuItem submenuFiltro_90;
 		JMenuItem submenuFiltro_110;
 		JMenuItem submenuFiltro_120;
@@ -394,21 +392,6 @@ public class JanelaPrincipal extends Janela {
 		});
 		menuFiltros.add(submenuFiltro_70);
 
-		submenuFiltro_80 = new JMenuItem("Filtro Gausiano");
-		submenuFiltro_80.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int[][] gausiana = {
-						{ 1, 2, 1 },
-						{ 2, 4, 2 },
-						{ 1, 2, 1 }
-				};
-				validaImagemJaCarregada();
-				trocaImagem(imagem.convolucao(gausiana));
-			}
-		});
-		menuFiltros.add(submenuFiltro_80);
-
 		submenuFiltro_90 = new JMenuItem("Filtro Limiar");
 		submenuFiltro_90.addActionListener(new ActionListener() {
 			@Override
@@ -464,7 +447,12 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-					trocaImagem(Filtros.aplicaFiltroGaussiano(imagem));
+				int[][] gausiana = {
+						{ 1, 2, 1 },
+						{ 2, 4, 2 },
+						{ 1, 2, 1 }
+				};
+				trocaImagem(imagem.convolucao(gausiana));
 			}
 		});
 		menuFiltros.add(submenuFiltroGaussiano);
