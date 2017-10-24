@@ -212,14 +212,22 @@ public class JanelaPrincipal extends Janela {
 
 	private void criaMenuEstatisticas(JMenu menuEstatisticas) {
 		// Menu Estatísticas
+
+		// Parte 1
 		JMenuItem submenuEstatisticasMediaQuadrante_2;
 		// JMenuItem submenuEstatisticasMedianaQuadrante_3;
 		JMenuItem submenuEstatisticasModaQuadrante_4;
 		JMenuItem submenuEstatisticasVarianciaQuadrante_12;
 		JMenuItem submenuEstatisticasQtdPixelsSuperior;
 		JMenuItem submenuEstatisticasQtdPixelsInferior;
-		// ver qual é esse
-		JMenuItem submenuEstatisticasMediaQuadrante_02;
+
+		// Parte 2
+		JMenuItem submenuEstatisticasAlteraMediaQuadrante_02;
+		JMenuItem submenuFiltro_10;
+		JMenuItem submenuFiltro_20;
+		JMenuItem submenuFiltro_30;
+		JMenuItem submenuFiltro_40;
+		JMenuItem submenuFiltro_50;
 
 		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir média quadrante 2");
 		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
@@ -280,26 +288,77 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
+		menuEstatisticas.addSeparator();
 
 		/**
 		 * TODO Parte 2<br>
 		 * Apresente novamente a imagem com as seguintes alterações: <br>
+		 * a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
 		 * b) Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
 		 * c) Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
 		 * d) Valores menores que a média do quadrante 2 recebem 100.<br>
 		 * e) Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
 		 */
-
-		// TODO pegar o que esta no menu filtros > diversos
-		submenuEstatisticasMediaQuadrante_02 = new JMenuItem("Valores maiores ou iguais a média do quadrante 2 recebem branco");
-		submenuEstatisticasMediaQuadrante_02.addActionListener(new ActionListener() {
+		submenuEstatisticasAlteraMediaQuadrante_02 = new JMenuItem("Valores maiores ou iguais a média do quadrante 2 recebem branco");
+		submenuEstatisticasAlteraMediaQuadrante_02.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
 				trocaImagem(Efeitos.mediaQuadrante2Branco(imagem));
 			}
 		});
-		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_02);
+		menuEstatisticas.add(submenuEstatisticasAlteraMediaQuadrante_02);
+
+		// submenuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
+		// submenuFiltro_10.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.maioresMediaBranco(imagem).getBufferedImage());
+		// }
+		//
+		// });
+		// menuEstatisticas.add(submenuFiltro_10);
+		//
+		// submenuFiltro_20 = new JMenuItem("Valores maiores ou iguais a moda de toda a imagem recebem preto");
+		// submenuFiltro_20.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.maioresModaPreto(imagem).getBufferedImage());
+		// }
+		// });
+		// menuEstatisticas.add(submenuFiltro_20);
+		//
+		// submenuFiltro_30 = new JMenuItem("Valores maiores ou iguais a mediana de toda a imagem recebem 140");
+		// submenuFiltro_30.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
+		// }
+		// });
+		// menuEstatisticas.add(submenuFiltro_30);
+		//
+		// submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
+		// submenuFiltro_40.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.medianaQuadrante3(imagem).getBufferedImage());
+		// }
+		// });
+		// menuEstatisticas.add(submenuFiltro_40);
+		//
+		// submenuFiltro_50 = new JMenuItem("Valores maiores que a mediana de toda a imagem recebem 0 e menores que a média recebem 255");
+		// submenuFiltro_50.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.maioresMediana0MenoresMedia255(imagem).getBufferedImage());
+		// }
+		// });
+		// menuEstatisticas.add(submenuFiltro_50);
 	}
 
 	private void criaMenuHistograma(JMenu menuHistograma) {
@@ -330,12 +389,6 @@ public class JanelaPrincipal extends Janela {
 
 	private void criaMenuFiltros(JMenu menuFiltros) {
 		// Menu Filtros
-		JMenu menuFiltrosDiversos;
-		JMenuItem submenuFiltro_10;
-		JMenuItem submenuFiltro_20;
-		JMenuItem submenuFiltro_30;
-		JMenuItem submenuFiltro_40;
-		JMenuItem submenuFiltro_50;
 		JMenuItem submenuFiltro_60;
 		JMenuItem submenuFiltro_70;
 		JMenuItem submenuFiltro_90;
@@ -343,59 +396,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_120;
 		JMenuItem submenuFiltro_130;
 		JMenuItem submenuFiltroGaussiano;
-
-		menuFiltrosDiversos = new JMenu("Diversos");
-		menuFiltros.add(menuFiltrosDiversos);
-		submenuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
-		submenuFiltro_10.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMediaBranco(imagem).getBufferedImage());
-			}
-
-		});
-		menuFiltrosDiversos.add(submenuFiltro_10);
-
-		submenuFiltro_20 = new JMenuItem("Valores maiores ou iguais a moda de toda a imagem recebem preto");
-		submenuFiltro_20.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresModaPreto(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_20);
-
-		submenuFiltro_30 = new JMenuItem("Valores maiores ou iguais a mediana de toda a imagem recebem 140");
-		submenuFiltro_30.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_30);
-
-		submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
-		submenuFiltro_40.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.medianaQuadrante3(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_40);
-
-		submenuFiltro_50 = new JMenuItem("Valores maiores que a mediana de toda a imagem recebem 0 e menores que a média recebem 255");
-		submenuFiltro_50.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMediana0MenoresMedia255(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_50);
 
 		submenuFiltro_60 = new JMenuItem("Converter em tons de cinza");
 		submenuFiltro_60.addActionListener(new ActionListener() {
