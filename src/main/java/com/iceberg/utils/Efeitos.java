@@ -2,7 +2,7 @@ package com.iceberg.utils;
 
 import java.awt.image.BufferedImage;
 
-import com.iceberg.janelas.media.JanelaMediaQuadrante_2;
+import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
 import com.iceberg.sistema.Imagem;
 
 public class Efeitos {

@@ -1,7 +1,8 @@
 package com.iceberg.janelas.estatisticas;
 
-import java.awt.Label;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JOptionPane;
 
 import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
@@ -22,9 +23,7 @@ public class JanelaVarianciaQuadrante_12 extends Janela {
 		Integer varianciaQ2 = calcularVariancia(imagem);
 
 		getContentPane().removeAll(); // Impede que os graficos se sobreponham 
-		getContentPane().add(new Label("Variância das tonalidades de cinza do Quandrante 1 é " + varianciaQ1 + " e do Quadrante 2 é " + varianciaQ2));
-
-		MontaJanela(500, 150);
+		JOptionPane.showMessageDialog(null, "Variância das tonalidades de cinza do Quandrante 1 é " + varianciaQ1 + " e do Quadrante 2 é " + varianciaQ2);
 	}
 
 	private Integer[][] calculaQuadrante1(Imagem imagem) {

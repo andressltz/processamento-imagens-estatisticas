@@ -25,13 +25,13 @@ import com.iceberg.janelas.editar.JanelaTranslacao;
 import com.iceberg.janelas.estatisticas.JanelaExibirQuantidadePixelsInferior;
 import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
 import com.iceberg.janelas.estatisticas.JanelaModaQuadrante_4;
+import com.iceberg.janelas.estatisticas.JanelaTonalidadeMenor100;
 import com.iceberg.janelas.estatisticas.JanelaVarianciaQuadrante_12;
 import com.iceberg.janelas.filtros.JanelaBordas;
 import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
 import com.iceberg.janelas.histograma.JanelaHistograma;
 import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
-import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
@@ -213,50 +213,70 @@ public class JanelaPrincipal extends Janela {
 	private void criaMenuEstatisticas(JMenu menuEstatisticas) {
 		// Menu Estatísticas
 		JMenuItem submenuEstatisticasMediaQuadrante_2;
-		// C mediana quadrante 3
+		// JMenuItem submenuEstatisticasMedianaQuadrante_3;
 		JMenuItem submenuEstatisticasModaQuadrante_4;
 		JMenuItem submenuEstatisticasVarianciaQuadrante_12;
+		JMenuItem submenuEstatisticasQtdPixelsSuperior;
 		JMenuItem submenuEstatisticasQtdPixelsInferior;
 		// ver qual é esse
 		JMenuItem submenuEstatisticasMediaQuadrante_02;
 
-		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir Média Quadrante 2");
+		submenuEstatisticasMediaQuadrante_2 = new JMenuItem("Exibir média quadrante 2");
 		submenuEstatisticasMediaQuadrante_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-					new JanelaMediaQuadrante_2(imagem);
-
+				new JanelaMediaQuadrante_2(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
 
-		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir Moda Quadrante 4");
+		// submenuEstatisticasMedianaQuadrante_3 = new JMenuItem("Exibir mediana do quadrante 3");
+		// submenuEstatisticasMedianaQuadrante_3.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// validaImagemJaCarregada();
+		// trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
+		// }
+		// });
+		// menuEstatisticas.add(submenuEstatisticasMedianaQuadrante_3);
+
+		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir moda quadrante 4");
 		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-					new JanelaModaQuadrante_4(imagem);
+				new JanelaModaQuadrante_4(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
 
-		submenuEstatisticasVarianciaQuadrante_12 = new JMenuItem("Exibir Variância Quadrantes 1 e 2");
+		submenuEstatisticasVarianciaQuadrante_12 = new JMenuItem("Exibir variância quadrantes 1 e 2");
 		submenuEstatisticasVarianciaQuadrante_12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-					new JanelaVarianciaQuadrante_12(imagem);
+				new JanelaVarianciaQuadrante_12(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
 
-		submenuEstatisticasQtdPixelsInferior = new JMenuItem("Exibir Quantidade de pixels na metade inferior");
+		submenuEstatisticasQtdPixelsSuperior = new JMenuItem("Exibir quantidade de pixels na metade superior");
+		submenuEstatisticasQtdPixelsSuperior.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
+				new JanelaTonalidadeMenor100(imagem);
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasQtdPixelsSuperior);
+
+		submenuEstatisticasQtdPixelsInferior = new JMenuItem("Exibir quantidade de pixels na metade inferior");
 		submenuEstatisticasQtdPixelsInferior.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-					new JanelaExibirQuantidadePixelsInferior(imagem);
+				new JanelaExibirQuantidadePixelsInferior(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
@@ -269,10 +289,13 @@ public class JanelaPrincipal extends Janela {
 		 * d) Valores menores que a média do quadrante 2 recebem 100.<br>
 		 * e) Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
 		 */
+
+		// TODO pegar o que esta no menu filtros > diversos
 		submenuEstatisticasMediaQuadrante_02 = new JMenuItem("Valores maiores ou iguais a média do quadrante 2 recebem branco");
 		submenuEstatisticasMediaQuadrante_02.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
 				trocaImagem(Efeitos.mediaQuadrante2Branco(imagem));
 			}
 		});
@@ -311,7 +334,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_10;
 		JMenuItem submenuFiltro_20;
 		JMenuItem submenuFiltro_30;
-		JMenuItem submenuFiltro_35;
 		JMenuItem submenuFiltro_40;
 		JMenuItem submenuFiltro_50;
 		JMenuItem submenuFiltro_60;
@@ -320,7 +342,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_110;
 		JMenuItem submenuFiltro_120;
 		JMenuItem submenuFiltro_130;
-		JMenuItem submenuFiltro_131;
 		JMenuItem submenuFiltroGaussiano;
 
 		menuFiltrosDiversos = new JMenu("Diversos");
@@ -355,16 +376,6 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltrosDiversos.add(submenuFiltro_30);
-
-		submenuFiltro_35 = new JMenuItem("Valores da mediana do terceiro quadrante NEW");
-		submenuFiltro_35.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_35);
 
 		submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
 		submenuFiltro_40.addActionListener(new ActionListener() {
@@ -450,16 +461,6 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltros.add(submenuFiltro_130);
-
-		submenuFiltro_131 = new JMenuItem("Valores Pixels");
-		submenuFiltro_131.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				adicionaTelaConfig("Menor 100", new JanelaTonalidadeMenor100(imagem));
-			}
-		});
-		menuFiltros.add(submenuFiltro_131);
 
 		submenuFiltroGaussiano = new JMenuItem("Filtro Gaussiano");
 		submenuFiltroGaussiano.addActionListener(new ActionListener() {
@@ -619,13 +620,6 @@ public class JanelaPrincipal extends Janela {
 		fechaTelaConfig();
 		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.add(panel);
-		pnlConfig.setVisible(true);
-
-	}
-
-	private void adicionaTelaConfig(String titulo, Object panel) {
-		fechaTelaConfig();
-		((TitledBorder) pnlConfig.getBorder()).setTitle(titulo);
 		pnlConfig.setVisible(true);
 
 	}

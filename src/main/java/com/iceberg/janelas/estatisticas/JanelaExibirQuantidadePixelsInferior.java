@@ -1,7 +1,8 @@
 package com.iceberg.janelas.estatisticas;
 
-import java.awt.Label;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JOptionPane;
 
 import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
@@ -20,9 +21,7 @@ public class JanelaExibirQuantidadePixelsInferior extends Janela {
 		int quantidade = calculaMetadeInferior(imagem);
 
 		getContentPane().removeAll(); // Impede que os graficos se sobreponham 
-		getContentPane().add(new Label("Na metade inferior da imagem existem " + quantidade + " pixels com tonalidade superior a 150"));
-
-		MontaJanela(500, 150);
+		JOptionPane.showMessageDialog(null, "Na metade inferior da imagem existem " + quantidade + " pixels com tonalidade superior a 150");
 	}
 
 	private int calculaMetadeInferior(Imagem imagem) {

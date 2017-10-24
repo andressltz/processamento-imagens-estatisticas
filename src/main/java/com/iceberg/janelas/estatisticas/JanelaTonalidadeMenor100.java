@@ -1,6 +1,7 @@
-package com.iceberg.janelas.histograma;
+package com.iceberg.janelas.estatisticas;
 
 import java.awt.image.BufferedImage;
+
 import javax.swing.JOptionPane;
 
 import com.iceberg.janelas.Janela;
@@ -12,7 +13,6 @@ public class JanelaTonalidadeMenor100 extends Janela {
 	public JanelaTonalidadeMenor100( Imagem imagem ){
 		if( imagem.getBufferedImage().getType() != BufferedImage.TYPE_BYTE_GRAY ) {
 			imagem = Imagem.getCopiaEscalaCinza( imagem );
-			
 		}
 		
 		int linha = imagem.getLargura() / 2;
@@ -32,7 +32,6 @@ public class JanelaTonalidadeMenor100 extends Janela {
 		}
 		
 		JOptionPane.showMessageDialog( null, "Quantidade total de pixels com valores menor do que 100: " + qtPixelsMenor100 );
-		
 	}
 	
 }

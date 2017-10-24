@@ -1,8 +1,9 @@
 package com.iceberg.janelas.estatisticas;
 
-import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
@@ -22,9 +23,8 @@ public class JanelaModaQuadrante_4 extends Janela {
 		Integer moda = calculaModa(imagem);
 
 		getContentPane().removeAll(); // Impede que os graficos se sobreponham 
-		getContentPane().add(new Label("Moda das tonalidades de cinza do Quandrante 4 é " + moda));
 
-		MontaJanela(500, 150);
+		JOptionPane.showMessageDialog(null, "Moda das tonalidades de cinza do Quandrante 4 é " + moda);
 	}
 
 	private Integer calculaModa(Imagem imagem) {

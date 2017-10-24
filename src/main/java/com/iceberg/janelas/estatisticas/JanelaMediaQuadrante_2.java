@@ -1,7 +1,8 @@
 package com.iceberg.janelas.estatisticas;
 
-import java.awt.Label;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JOptionPane;
 
 import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
@@ -21,9 +22,7 @@ public class JanelaMediaQuadrante_2 extends Janela {
 		Integer media = calculaMediaQuadrante2(imagem);
 
 		getContentPane().removeAll(); // Impede que os graficos se sobreponham 
-		getContentPane().add(new Label("Média das tonalidades de cinza do Quandrante 2 é " + media));
-
-		MontaJanela(500, 150);
+		JOptionPane.showMessageDialog(null, "Média das tonalidades de cinza do Quandrante 2 é " + media);
 	}
 
 	public static int calculaMediaQuadrante2(Imagem imagem) {
