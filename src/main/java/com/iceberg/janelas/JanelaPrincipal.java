@@ -223,9 +223,8 @@ public class JanelaPrincipal extends Janela {
 
 		// Parte 2
 		JMenuItem submenuEstatisticasAlteraMediaQuadrante_02;
-		JMenuItem submenuFiltro_10;
 		JMenuItem submenuFiltro_20;
-		JMenuItem submenuFiltro_30;
+		JMenuItem submenuEstatisticasAlteraMedianaQuadrante_03;
 		JMenuItem submenuFiltro_40;
 		JMenuItem submenuFiltro_50;
 
@@ -291,11 +290,9 @@ public class JanelaPrincipal extends Janela {
 		menuEstatisticas.addSeparator();
 
 		/**
-		 * TODO Parte 2<br>
+		 * Parte 2<br>
 		 * Apresente novamente a imagem com as seguintes alterações: <br>
-		 * a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
 		 * b) Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
-		 * c) Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
 		 * d) Valores menores que a média do quadrante 2 recebem 100.<br>
 		 * e) Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
 		 */
@@ -309,17 +306,6 @@ public class JanelaPrincipal extends Janela {
 		});
 		menuEstatisticas.add(submenuEstatisticasAlteraMediaQuadrante_02);
 
-		// submenuFiltro_10 = new JMenuItem("Valores maiores ou iguais a média de toda a imagem recebem branco");
-		// submenuFiltro_10.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// validaImagemJaCarregada();
-		// trocaImagem(Efeitos.maioresMediaBranco(imagem).getBufferedImage());
-		// }
-		//
-		// });
-		// menuEstatisticas.add(submenuFiltro_10);
-		//
 		// submenuFiltro_20 = new JMenuItem("Valores maiores ou iguais a moda de toda a imagem recebem preto");
 		// submenuFiltro_20.addActionListener(new ActionListener() {
 		// @Override
@@ -329,17 +315,17 @@ public class JanelaPrincipal extends Janela {
 		// }
 		// });
 		// menuEstatisticas.add(submenuFiltro_20);
-		//
-		// submenuFiltro_30 = new JMenuItem("Valores maiores ou iguais a mediana de toda a imagem recebem 140");
-		// submenuFiltro_30.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// validaImagemJaCarregada();
-		// trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-		// }
-		// });
-		// menuEstatisticas.add(submenuFiltro_30);
-		//
+
+		submenuEstatisticasAlteraMedianaQuadrante_03 = new JMenuItem("Valores maiores ou iguais a mediana do quadrante 3 recebem 220");
+		submenuEstatisticasAlteraMedianaQuadrante_03.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
+				trocaImagem(Efeitos.maioresMedianaQuadrante3Recebe220(imagem));
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasAlteraMedianaQuadrante_03);
+
 		// submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
 		// submenuFiltro_40.addActionListener(new ActionListener() {
 		// @Override
@@ -349,7 +335,7 @@ public class JanelaPrincipal extends Janela {
 		// }
 		// });
 		// menuEstatisticas.add(submenuFiltro_40);
-		//
+
 		// submenuFiltro_50 = new JMenuItem("Valores maiores que a mediana de toda a imagem recebem 0 e menores que a média recebem 255");
 		// submenuFiltro_50.addActionListener(new ActionListener() {
 		// @Override

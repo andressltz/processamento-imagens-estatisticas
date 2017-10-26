@@ -6,8 +6,6 @@ import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
 import com.iceberg.sistema.Imagem;
 
 public class Efeitos {
-	public Efeitos() {
-	}
 
 	public static Imagem brilho(Imagem imagem, int brilho) {
 		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
@@ -57,18 +55,18 @@ public class Efeitos {
 		return imagem;
 	}
 
-	public static Imagem maioresMediana140(Imagem imagem) {
+	public static BufferedImage maioresMedianaQuadrante3Recebe220(Imagem imagem) {
 		imagem.converteParaTonsDeCinza();
 		int tom;
 
 		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
 			for (int linha = 0; linha < imagem.getAltura(); linha++) {
 				tom = imagem.getTomCinza(coluna, linha);
-				imagem.setTomCinza(coluna, linha, tom >= imagem.getMediana() ? 140 : tom);
+				imagem.setTomCinza(coluna, linha, tom >= imagem.getMediana() ? 220 : tom);
 			}
 		}
 
-		return imagem;
+		return imagem.getBufferedImage();
 	}
 
 	public static Imagem medianaQuadrante3(Imagem imagem) {
