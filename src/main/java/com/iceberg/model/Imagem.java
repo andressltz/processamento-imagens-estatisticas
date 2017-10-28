@@ -1,4 +1,4 @@
-package com.iceberg.sistema;
+package com.iceberg.model;
 
 import java.awt.Color;
 import java.awt.Graphics;

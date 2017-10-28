@@ -3,8 +3,8 @@ package com.iceberg.view;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.iceberg.sistema.Arquivo;
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Arquivo;
+import com.iceberg.model.Imagem;
 
 public class JanelaPropriedades extends Janela{
 	

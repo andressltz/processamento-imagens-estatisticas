@@ -2,7 +2,7 @@ package com.iceberg.utils;
 
 import java.awt.image.BufferedImage;
 
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Imagem;
 
 public class Efeitos {
 

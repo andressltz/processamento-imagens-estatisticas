@@ -2,7 +2,7 @@ package com.iceberg.controller.estatisticas;
 
 import javax.swing.JOptionPane;
 
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Imagem;
 import com.iceberg.utils.EstatisticasUtils;
 
 public class EstatisticasCalculoController {
@@ -54,7 +54,6 @@ public class EstatisticasCalculoController {
 		int quantidade = EstatisticasUtils.calculaMetadeSuperior(imagem);
 
 		JOptionPane.showMessageDialog(null, "Na metade superior da imagem existem " + quantidade + " pixels com tonalidade superior a 150");
-
 	}
 
 }

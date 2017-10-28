@@ -10,7 +10,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Imagem;
 import com.iceberg.utils.Efeitos;
 import com.iceberg.view.JanelaPrincipal;
 

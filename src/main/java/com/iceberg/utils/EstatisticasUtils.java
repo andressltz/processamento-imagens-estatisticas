@@ -3,7 +3,7 @@ package com.iceberg.utils;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Imagem;
 
 public class EstatisticasUtils {
 

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JOptionPane;
 
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Imagem;
 import com.iceberg.view.Janela;
 
 public class JanelaTonalidadeMenor100 extends Janela {

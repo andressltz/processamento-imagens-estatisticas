@@ -28,8 +28,8 @@ import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
 import com.iceberg.janelas.histograma.JanelaHistograma;
 import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
-import com.iceberg.sistema.Arquivo;
-import com.iceberg.sistema.Imagem;
+import com.iceberg.model.Arquivo;
+import com.iceberg.model.Imagem;
 import com.iceberg.utils.Efeitos;
 
 public class JanelaPrincipal extends Janela {
