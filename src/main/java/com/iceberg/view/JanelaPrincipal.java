@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,14 +17,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import com.iceberg.controller.estatisticas.EstatisticasCalculoController;
 import com.iceberg.janelas.editar.JanelaBrilho;
 import com.iceberg.janelas.editar.JanelaContraste;
 import com.iceberg.janelas.editar.JanelaRedimensionar;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
-import com.iceberg.janelas.estatisticas.EstatisticasCalculo;
-import com.iceberg.janelas.estatisticas.JanelaExibirQuantidadePixelsInferior;
-import com.iceberg.janelas.estatisticas.JanelaTonalidadeMenor100;
 import com.iceberg.janelas.filtros.JanelaBordas;
 import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
@@ -231,7 +229,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				EstatisticasCalculo.calculaMediaQuadrante2(imagem);
+				EstatisticasCalculoController.calculaMediaQuadrante2(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
@@ -241,7 +239,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				validaImagemJaCarregada();
-				EstatisticasCalculo.calculaMedianaQuadrante3(imagem);
+				EstatisticasCalculoController.calculaMedianaQuadrante3(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasMedianaQuadrante_3);
@@ -251,7 +249,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				EstatisticasCalculo.calculaModaQuadrante4(imagem);
+				EstatisticasCalculoController.calculaModaQuadrante4(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
@@ -261,7 +259,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				EstatisticasCalculo.calculaVarianciaQuadrante12(imagem);
+				EstatisticasCalculoController.calculaVarianciaQuadrante12(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);
@@ -271,7 +269,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				validaImagemJaCarregada();
-				new JanelaTonalidadeMenor100(imagem);
+				EstatisticasCalculoController.exibirQuantidadePixelsSuperior(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsSuperior);
@@ -281,7 +279,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				new JanelaExibirQuantidadePixelsInferior(imagem);
+				EstatisticasCalculoController.exibirQuantidadePixelsInferior(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);

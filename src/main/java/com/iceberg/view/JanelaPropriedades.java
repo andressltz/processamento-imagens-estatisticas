@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.view;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

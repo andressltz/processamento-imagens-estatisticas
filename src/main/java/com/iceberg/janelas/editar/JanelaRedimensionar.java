@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.iceberg.janelas.JanelaPrincipal;
+import com.iceberg.view.JanelaPrincipal;
 
 public class JanelaRedimensionar extends JPanel{
 	

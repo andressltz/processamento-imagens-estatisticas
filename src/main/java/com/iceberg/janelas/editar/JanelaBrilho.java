@@ -10,9 +10,9 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.iceberg.janelas.JanelaPrincipal;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
+import com.iceberg.view.JanelaPrincipal;
 
 public class JanelaBrilho extends JPanel{
 	private static final long serialVersionUID = 1L;

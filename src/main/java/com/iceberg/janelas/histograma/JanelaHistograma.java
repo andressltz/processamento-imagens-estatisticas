@@ -9,8 +9,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.statistics.HistogramDataset;
 
-import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.view.Janela;
 
 public class JanelaHistograma extends Janela{
 	private static final long serialVersionUID = 1L;

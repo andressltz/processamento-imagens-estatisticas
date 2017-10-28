@@ -1,11 +1,11 @@
-package com.iceberg.janelas.estatisticas;
+package com.iceberg.controller.estatisticas;
 
 import java.awt.image.BufferedImage;
 
 import javax.swing.JOptionPane;
 
-import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.view.Janela;
 
 public class JanelaTonalidadeMenor100 extends Janela {
 	private static final long serialVersionUID = 1L;
