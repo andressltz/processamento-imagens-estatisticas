@@ -22,11 +22,9 @@ import com.iceberg.janelas.editar.JanelaContraste;
 import com.iceberg.janelas.editar.JanelaRedimensionar;
 import com.iceberg.janelas.editar.JanelaTransformacaoLivre;
 import com.iceberg.janelas.editar.JanelaTranslacao;
+import com.iceberg.janelas.estatisticas.EstatisticasCalculo;
 import com.iceberg.janelas.estatisticas.JanelaExibirQuantidadePixelsInferior;
-import com.iceberg.janelas.estatisticas.JanelaMediaQuadrante_2;
-import com.iceberg.janelas.estatisticas.JanelaModaQuadrante_4;
 import com.iceberg.janelas.estatisticas.JanelaTonalidadeMenor100;
-import com.iceberg.janelas.estatisticas.JanelaVarianciaQuadrante_12;
 import com.iceberg.janelas.filtros.JanelaBordas;
 import com.iceberg.janelas.filtros.JanelaFiltroLivre;
 import com.iceberg.janelas.filtros.JanelaLimiarizacao;
@@ -215,7 +213,7 @@ public class JanelaPrincipal extends Janela {
 
 		// Parte 1
 		JMenuItem submenuEstatisticasMediaQuadrante_2;
-		// JMenuItem submenuEstatisticasMedianaQuadrante_3;
+		JMenuItem submenuEstatisticasMedianaQuadrante_3;
 		JMenuItem submenuEstatisticasModaQuadrante_4;
 		JMenuItem submenuEstatisticasVarianciaQuadrante_12;
 		JMenuItem submenuEstatisticasQtdPixelsSuperior;
@@ -233,27 +231,27 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				new JanelaMediaQuadrante_2(imagem);
+				EstatisticasCalculo.calculaMediaQuadrante2(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasMediaQuadrante_2);
 
-		// submenuEstatisticasMedianaQuadrante_3 = new JMenuItem("Exibir mediana do quadrante 3");
-		// submenuEstatisticasMedianaQuadrante_3.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// validaImagemJaCarregada();
-		// trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-		// }
-		// });
-		// menuEstatisticas.add(submenuEstatisticasMedianaQuadrante_3);
+		submenuEstatisticasMedianaQuadrante_3 = new JMenuItem("Exibir mediana do quadrante 3");
+		submenuEstatisticasMedianaQuadrante_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
+				EstatisticasCalculo.calculaMedianaQuadrante3(imagem);
+			}
+		});
+		menuEstatisticas.add(submenuEstatisticasMedianaQuadrante_3);
 
 		submenuEstatisticasModaQuadrante_4 = new JMenuItem("Exibir moda quadrante 4");
 		submenuEstatisticasModaQuadrante_4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				new JanelaModaQuadrante_4(imagem);
+				EstatisticasCalculo.calculaModaQuadrante4(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasModaQuadrante_4);
@@ -263,7 +261,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				new JanelaVarianciaQuadrante_12(imagem);
+				EstatisticasCalculo.calculaVarianciaQuadrante12(imagem);
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasVarianciaQuadrante_12);

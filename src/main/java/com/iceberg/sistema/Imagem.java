@@ -19,28 +19,22 @@ public class Imagem {
 	
 	public Imagem(File arquivo) {
 		carregarImagem(arquivo);
-		
 	}
 	
 	public Imagem(BufferedImage bi){
 		this.bufferedImage = bi;
-		
 	}
 
 	public void carregarImagem(File arquivo){
 		try {
 			this.bufferedImage = ImageIO.read(arquivo);
-			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Falha ao abrir imagem: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-			
 		}
-		
 	}
 	
 	public BufferedImage getBufferedImage(){
 		return this.bufferedImage;
-		
 	}
 	
 	public void calcularMedia() {
@@ -58,7 +52,6 @@ public class Imagem {
 		}
 		
 		media = soma / (largura * altura);
-		
 	}
 	
 	public void calcularModa(){
@@ -79,49 +72,43 @@ public class Imagem {
 				}
 				
 				qtdAtual = 1;
-				
 			}
-			
 		}
 		
 		this.moda = moda;
-		
 	}
 	
-	public void calcularMediana(){
+	public void calcularMediana() {
 		ordenarVetor();
-		mediana = vetorOrdenado[ Math.round( vetorOrdenado.length / 2 ) ];
-		
+		mediana = vetorOrdenado[Math.round(vetorOrdenado.length / 2)];
 	}
-	
-	public void calcularVariancia(){
+
+	public void calcularVariancia() {
 		int soma = 0;
 		int diff;
 
 		int altura = getAltura();
 		int largura = getLargura();
-		
-		for( int coluna = 0; coluna < largura; coluna++ ) {
-			for( int linha = 0; linha < altura; linha++ ) {
-				diff = getTomCinza( coluna, linha ) - getMedia();
+
+		for (int coluna = 0; coluna < largura; coluna++) {
+			for (int linha = 0; linha < altura; linha++) {
+				diff = getTomCinza(coluna, linha) - getMedia();
 				soma += diff * diff;
-				
+
 			}
-			
+
 		}
-		
+
 		variancia = soma / (largura * altura);
-		
+	
 	}
 	
 	public Integer getLargura() {
 		return this.bufferedImage.getWidth();
-		
 	}
 
 	public Integer getAltura() {
 		return this.bufferedImage.getHeight();
-		
 	}
 	
 	public Integer getMedia() {
@@ -130,45 +117,39 @@ public class Imagem {
 		}
 		
 		return media;
-		
 	}
 
 	public Integer getModa() {
 		if(moda == null){
 			calcularModa();
 		}
-		
-		
 		return moda;
-		
 	}
 
 	public Integer getMediana() {
-		if(mediana == null){
+		if (mediana == null) {
 			calcularMediana();
 		}
-		
+
 		return mediana;
-		
+
 	}
 
 	public Integer getVariancia() {
-		if(variancia == null){
+		if (variancia == null) {
 			calcularVariancia();
 		}
-		
+
 		return variancia;
-		
+
 	}
 	
 	public int getTomCinza(int x, int y){
 		return ( bufferedImage.getRGB( x, y ) >> 16 ) & 0xFF;
-		
 	}
 	
 	public void setTomCinza(int x, int y, int tomCinza){
 		bufferedImage.setRGB(x, y, tomCinza * 0x00010101);
-		
 	}
 
 	private void ordenarVetor(){
@@ -190,7 +171,6 @@ public class Imagem {
 		}
 		
 		Arrays.sort(vetorOrdenado);
-		
 	}	
 	
 	public static double[] criaVetorImagem(Imagem imagem){
@@ -205,12 +185,10 @@ public class Imagem {
 		}
 		
 		return vetor;
-		
 	}
 	
 	public static Imagem getCopiaEscalaCinza(Imagem imagem) {
 		return new Imagem(getCopiaEscalaCinza(imagem.getBufferedImage()));
-		
 	}
 	
 	public static BufferedImage getCopiaEscalaCinza(BufferedImage bufferedImage) {
@@ -220,7 +198,6 @@ public class Imagem {
 		g.dispose();
 		
 		return imagemCinza;
-		
 	}
 	
 	public void converteParaTonsDeCinza() {
@@ -228,7 +205,6 @@ public class Imagem {
 			bufferedImage = getCopiaEscalaCinza(bufferedImage);
 			
 		}	
-		
 	}
 
 	public BufferedImage espelhamentoVertical() {
@@ -241,7 +217,6 @@ public class Imagem {
 			};
 		
 		return this.bufferedImage = multiplicaMatriz(matrizMult);
-		
 	}
 
 	public BufferedImage espelhamentoHorizontal() {
@@ -254,7 +229,6 @@ public class Imagem {
 			};
 		
 		return this.bufferedImage = multiplicaMatriz(matrizMult);
-		
 	}
 
 	public BufferedImage redimensionar(double scalaX, double scalaY) {
@@ -276,7 +250,6 @@ public class Imagem {
 		}
 		
 		return this.bufferedImage = resultado;
-		
 	}
 	
 	public BufferedImage transladar(int x, int y){
@@ -287,7 +260,6 @@ public class Imagem {
 		};
 		
 		return this.bufferedImage = multiplicaMatriz(matrizMult);
-		
 	}
 	
 	public BufferedImage rotacionar(int angulo) {
@@ -325,7 +297,6 @@ public class Imagem {
 			};
 		
 		return multiplicaMatriz(largura, altura, matrizMult);
-		
 	}
 	
 	public BufferedImage multiplicaMatriz(double[][] matrizMult) {
