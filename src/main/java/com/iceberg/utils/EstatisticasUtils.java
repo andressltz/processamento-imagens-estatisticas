@@ -81,7 +81,6 @@ public class EstatisticasUtils {
 			for (linha = 0; linha < altura; linha++) {
 				soma += imagem.getTomCinza(coluna, linha);
 			}
-
 		}
 
 		media = soma / (largura * altura);
@@ -100,15 +99,15 @@ public class EstatisticasUtils {
 
 	public static Integer calcularVariancia(Imagem imagem) {
 		int soma = 0;
-		int diff;
-		int variancia;
+		int diff = 0;
+		int variancia = 0;
+		int media = calculaMedia(imagem);
 
 		for (int coluna = 0; coluna < largura; coluna++) {
 			for (int linha = 0; linha < altura; linha++) {
-				diff = imagem.getTomCinza(coluna, linha) - calculaMedia(imagem);
+				diff = imagem.getTomCinza(coluna, linha) - media;
 				soma += diff * diff;
 			}
-
 		}
 
 		variancia = soma / (largura * altura);
