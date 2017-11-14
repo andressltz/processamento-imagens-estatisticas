@@ -42,18 +42,21 @@ public class EstatisticasCalculoController {
 	}
 
 	/**
+	 * f) Informe quantos pixels com tonalidade inferior a 100 tem na metade superior da imagem.
+	 */
+	public static void exibirQuantidadePixelsSuperior(Imagem imagem) {
+		int quantidade = EstatisticasUtils.calculaMetadeSuperior(imagem);
+
+		JOptionPane.showMessageDialog(null, "Na metade superior da imagem existem " + quantidade + " pixels com tonalidade inferior a 100");
+	}
+
+	/**
 	 * g) Informe quantos pixels com tonalidade superior a 150 tem na metade inferior da imagem.
 	 */
 	public static void exibirQuantidadePixelsInferior(Imagem imagem) {
 		int quantidade = EstatisticasUtils.calculaMetadeInferior(imagem);
 
 		JOptionPane.showMessageDialog(null, "Na metade inferior da imagem existem " + quantidade + " pixels com tonalidade superior a 150");
-	}
-
-	public static void exibirQuantidadePixelsSuperior(Imagem imagem) {
-		int quantidade = EstatisticasUtils.calculaMetadeSuperior(imagem);
-
-		JOptionPane.showMessageDialog(null, "Na metade superior da imagem existem " + quantidade + " pixels com tonalidade superior a 150");
 	}
 
 }

@@ -187,22 +187,22 @@ public class EstatisticasUtils {
 		}
 	}
 
-	public static int calculaMetadeInferior(Imagem imagem) {
+	public static int calculaMetadeSuperior(Imagem imagem) {
 		if (imagem.getBufferedImage().getType() != BufferedImage.TYPE_BYTE_GRAY) {
 			imagem = Imagem.getCopiaEscalaCinza(imagem);
 
 			largura = imagem.getLargura();
-			altura = (imagem.getAltura() / 2) + 1;
+			altura = (imagem.getAltura() / 2);
 
-			Integer metadeInferior[][] = new Integer[largura][altura];
+			Integer metadeSuperior[][] = new Integer[largura][altura];
 			int tonalidade;
 			int count = 0;
 
 			for (int x = 0; x < largura; x++) {
 				for (int y = 0; y < altura; y++) {
 					tonalidade = imagem.getTomCinza(x, y);
-					metadeInferior[x][y] = tonalidade;
-					if (tonalidade > 150) {
+					metadeSuperior[x][y] = tonalidade;
+					if (tonalidade < 100) {
 						count++;
 					}
 				}
@@ -213,12 +213,12 @@ public class EstatisticasUtils {
 		return 0;
 	}
 
-	public static int calculaMetadeSuperior(Imagem imagem) {
+	public static int calculaMetadeInferior(Imagem imagem) {
 		if (imagem.getBufferedImage().getType() != BufferedImage.TYPE_BYTE_GRAY) {
 			imagem = Imagem.getCopiaEscalaCinza(imagem);
 
 			largura = imagem.getLargura();
-			altura = (imagem.getAltura() / 2);
+			altura = (imagem.getAltura() / 2) + 1;
 
 			Integer metadeInferior[][] = new Integer[largura][altura];
 			int tonalidade;
