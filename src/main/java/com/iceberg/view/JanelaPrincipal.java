@@ -284,8 +284,20 @@ public class JanelaPrincipal extends Janela {
 		});
 		menuEstatisticas.add(submenuEstatisticasQtdPixelsInferior);
 		menuEstatisticas.addSeparator();
+		//
+		// Apresente novamente a imagem com as seguintes alterações:
+		//
+		// a) Valores maiores ou iguais a média do quadrante 2 recebem branco.
+		// b) Valores maiores ou iguais a moda do quadrante 4 recebem 200.
+		// c) Valores maiores ou iguais a mediana do quadrante 3 recebem 220.
+		// d) Valores menores que a média do quadrante 2 recebem 100.
+		// e) Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.
+
 
 		/**
+		 * Parte 1<br>
+		 * f) Informe quantos pixels com tonalidade menor do que 100 tem na metade superior da imagem.<br>
+		 * g) Informe quantos pixels com tonalidade superior a 150 tem na metade inferior da imagem.<br>
 		 * Parte 2<br>
 		 * Apresente novamente a imagem com as seguintes alterações: <br>
 		 * b) Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
