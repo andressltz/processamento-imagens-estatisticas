@@ -73,6 +73,7 @@ public class JanelaPrincipal extends Janela {
 		JMenu menuHistograma;
 		JMenu menuEstatisticas;
 		JMenu menuRotacionar;
+		JMenu menuExtracaoCaracteristicas;
 
 		menuBarPrincipal = new JMenuBar();
 
@@ -117,6 +118,13 @@ public class JanelaPrincipal extends Janela {
 		menuRotacionar = new JMenu("Rotacionar");
 		menuBarPrincipal.add(menuRotacionar);
 		criaMenuRotacionar(menuRotacionar);
+
+		/*
+		 * Menu Extração de Características
+		 */
+		menuExtracaoCaracteristicas = new JMenu("Extração de Características");
+		menuBarPrincipal.add(menuExtracaoCaracteristicas);
+		criaMenuExtracaoCaracteristicas(menuExtracaoCaracteristicas);
 	}
 
 	private void criaMenuRotacionar(JMenu menuRotacionar) {
@@ -571,6 +579,42 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuArquivo.add(submenuSair);
+	}
+
+	private void criaMenuExtracaoCaracteristicas(JMenu menuExtracaoCaracteristicas) {
+		JMenuItem submenuExtracaoAreaQuadrado;
+		JMenuItem submenuExtracaoAreaCirculoMaior;
+		JMenuItem submenuExtracaoCircularidadeCirculos;
+
+		submenuExtracaoAreaQuadrado = new JMenuItem("Calcular área e perímetro do quadrado");
+		submenuExtracaoAreaQuadrado.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
+				// TODO fazer
+			}
+		});
+		menuExtracaoCaracteristicas.add(submenuExtracaoAreaQuadrado);
+
+		submenuExtracaoAreaCirculoMaior = new JMenuItem("Calcular área e perímetro do circulo maior");
+		submenuExtracaoAreaCirculoMaior.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
+				// TODO fazer
+			}
+		});
+		menuExtracaoCaracteristicas.add(submenuExtracaoAreaCirculoMaior);
+
+		submenuExtracaoCircularidadeCirculos = new JMenuItem("Calcular circularidade de todos os círculos");
+		submenuExtracaoCircularidadeCirculos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				validaImagemJaCarregada();
+				// TODO fazer
+			}
+		});
+		menuExtracaoCaracteristicas.add(submenuExtracaoCircularidadeCirculos);
 	}
 
 	private void carregaImagem(Imagem im) {
