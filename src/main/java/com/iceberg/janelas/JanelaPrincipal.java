@@ -35,6 +35,7 @@ import com.iceberg.janelas.histograma.JanelaTonalidadeMenor100;
 import com.iceberg.sistema.Arquivo;
 import com.iceberg.sistema.Imagem;
 import com.iceberg.utils.Efeitos;
+import com.iceberg.utils.ExtracaoCaracteristicas;
 
 public class JanelaPrincipal extends Janela {
 
@@ -591,7 +592,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				// TODO fazer
+				ExtracaoCaracteristicas.calcularAreaPerimetroQuadrado(imagem);
 			}
 		});
 		menuExtracaoCaracteristicas.add(submenuExtracaoAreaQuadrado);
