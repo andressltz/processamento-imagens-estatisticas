@@ -11,22 +11,23 @@ public class ExtracaoCaracteristicas {
 		int firstPoint = 0;
 		int lastPoint = 0;
 
-		for (int i = 1; i < imagem.getLargura(); i++) {
-			for (int j = 1; j < imagem.getAltura(); j++) {
-				int rgb = imagem.getBufferedImage().getRGB(i, j);
+		for (int y = 1; y < imagem.getAltura(); y++) {
+			for (int x = 1; x < imagem.getLargura(); x++) {
+				int rgb = imagem.getBufferedImage().getRGB(x, y);
 				if (rgb == whiteColor) {
 					if (firstPoint != 0) {
-						lastPoint = j;
+						lastPoint = x;
+						break;
 					}
 				} else {
 					if (firstPoint == 0) {
-						firstPoint = j;
+						firstPoint = x;
 					}
 				}
+			}
 
-				if (firstPoint != 0 && lastPoint != 0) {
-					break;
-				}
+			if (firstPoint != 0 && lastPoint != 0) {
+				break;
 			}
 		}
 
