@@ -602,7 +602,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				ExtracaoCaracteristicas.calcularAreaPerimetroCirculoMaior(imagem);
+				// TODO fazer
 			}
 		});
 		menuExtracaoCaracteristicas.add(submenuExtracaoAreaCirculoMaior);
