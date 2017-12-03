@@ -11,7 +11,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.iceberg.model.Imagem;
-import com.iceberg.utils.Efeitos;
+import com.iceberg.services.EfeitosService;
 import com.iceberg.view.JanelaPrincipal;
 
 public class JanelaContraste extends JPanel{
@@ -49,7 +49,7 @@ public class JanelaContraste extends JPanel{
 				
 				tmpImagem = jp.getImagem().getCopia();
 				sliderValue = source.getValue();
-				jp.trocaImagem(Efeitos.contraste(tmpImagem, sliderValue).getBufferedImage(), false);
+				jp.trocaImagem(EfeitosService.contraste(tmpImagem, sliderValue).getBufferedImage(), false);
 			}
 			
 		});
@@ -63,7 +63,7 @@ public class JanelaContraste extends JPanel{
 		btnAplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				tmpImagem = jp.getImagem().getCopia();
-				jp.trocaImagem(Efeitos.contraste(tmpImagem, sliderValue).getBufferedImage());
+				jp.trocaImagem(EfeitosService.contraste(tmpImagem, sliderValue).getBufferedImage());
 				jp.fechaTelaConfig();
 			}
 		});

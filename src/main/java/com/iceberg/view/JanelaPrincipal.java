@@ -30,7 +30,7 @@ import com.iceberg.janelas.histograma.JanelaHistograma;
 import com.iceberg.janelas.histograma.JanelaHistogramaQuadrante_1;
 import com.iceberg.model.Arquivo;
 import com.iceberg.model.Imagem;
-import com.iceberg.utils.Efeitos;
+import com.iceberg.services.EfeitosService;
 
 public class JanelaPrincipal extends Janela {
 
@@ -288,9 +288,7 @@ public class JanelaPrincipal extends Janela {
 		/**
 		 * Parte 2<br>
 		 * Apresente novamente a imagem com as seguintes alterações: <br>
-		 * a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
 		 * b) Valores maiores ou iguais a moda do quadrante 4 recebem 200.<br>
-		 * c) Valores maiores ou iguais a mediana do quadrante 3 recebem 220.<br>
 		 * d) Valores menores que a média do quadrante 2 recebem 100.<br>
 		 * e) Valores maiores que a média do quadrante 2 recebem 0 e menores que a mediana do quadrante 3 recebem 255.<br>
 		 */
@@ -299,7 +297,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				trocaImagem(Efeitos.mediaQuadrante2Branco(imagem));
+				trocaImagem(EstatisticasCalculoController.mediaQuadrante2Branco(imagem));
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasAlteraMediaQuadrante_02);
@@ -319,7 +317,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMedianaQuadrante3Recebe220(imagem));
+				trocaImagem(EstatisticasCalculoController.maioresMedianaQuadrante3Recebe220(imagem));
 			}
 		});
 		menuEstatisticas.add(submenuEstatisticasAlteraMedianaQuadrante_03);
@@ -386,7 +384,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				validaImagemJaCarregada();
-				trocaImagem(Efeitos.converteParaTonsDeCinza(imagem).getBufferedImage());
+				trocaImagem(EfeitosService.converteParaTonsDeCinza(imagem).getBufferedImage());
 			}
 		});
 		menuFiltros.add(submenuFiltro_60);

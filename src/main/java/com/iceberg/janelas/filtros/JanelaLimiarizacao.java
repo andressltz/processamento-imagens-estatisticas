@@ -11,7 +11,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.iceberg.model.Imagem;
-import com.iceberg.utils.Efeitos;
+import com.iceberg.services.EfeitosService;
 import com.iceberg.view.JanelaPrincipal;
 
 
@@ -64,7 +64,7 @@ public class JanelaLimiarizacao extends JPanel{
 		btnAplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				tmpImagem = jp.getImagem().getCopia();
-				jp.trocaImagem(Efeitos.brilho(tmpImagem, sliderValue).getBufferedImage());
+				jp.trocaImagem(EfeitosService.brilho(tmpImagem, sliderValue).getBufferedImage());
 				jp.fechaTelaConfig();
 			}
 		});

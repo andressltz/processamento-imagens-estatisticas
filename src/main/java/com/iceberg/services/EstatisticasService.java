@@ -1,11 +1,11 @@
-package com.iceberg.utils;
+package com.iceberg.services;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import com.iceberg.model.Imagem;
 
-public class EstatisticasUtils {
+public class EstatisticasService {
 
 	private static int altura;
 
@@ -72,7 +72,7 @@ public class EstatisticasUtils {
 		Arrays.sort(vetorOrdenado);
 	}
 
-	private static Integer calculaMedia(Imagem imagem) {
+	public static Integer calculaMedia(Imagem imagem) {
 		Integer soma = 0;
 		Integer coluna, linha;
 		Integer media = 0;
@@ -133,7 +133,7 @@ public class EstatisticasUtils {
 		return null;
 	}
 
-	private static Integer[][] calculaQuadrante2(Imagem imagem) {
+	public static Integer[][] calculaQuadrante2(Imagem imagem) {
 		if (imagem.getBufferedImage().getType() != BufferedImage.TYPE_BYTE_GRAY) {
 			imagem = Imagem.getCopiaEscalaCinza(imagem);
 

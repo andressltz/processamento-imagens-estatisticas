@@ -1,10 +1,10 @@
-package com.iceberg.utils;
+package com.iceberg.services;
 
 import java.awt.image.BufferedImage;
 
 import com.iceberg.model.Imagem;
 
-public class Efeitos {
+public class EfeitosService {
 
 	public static Imagem brilho(Imagem imagem, int brilho) {
 		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
@@ -52,20 +52,6 @@ public class Efeitos {
 		}
 
 		return imagem;
-	}
-
-	public static BufferedImage maioresMedianaQuadrante3Recebe220(Imagem imagem) {
-		imagem.converteParaTonsDeCinza();
-		int tom;
-
-		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
-			for (int linha = 0; linha < imagem.getAltura(); linha++) {
-				tom = imagem.getTomCinza(coluna, linha);
-				imagem.setTomCinza(coluna, linha, tom >= imagem.getMediana() ? 220 : tom);
-			}
-		}
-
-		return imagem.getBufferedImage();
 	}
 
 	public static Imagem medianaQuadrante3(Imagem imagem) {
@@ -128,14 +114,37 @@ public class Efeitos {
 		return imagem;
 	}
 
-	/**
-	 * a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
-	 */
+	// a) Valores maiores ou iguais a média do quadrante 2 recebem branco.<br>
 	public static BufferedImage mediaQuadrante2Branco(Imagem imagem) {
-		// int media = JanelaMediaQuadrante_2.calculaMediaQuadrante2(imagem);
+		Integer quadrante2[][] = EstatisticasService.calculaQuadrante2(imagem);
+		int media = EstatisticasService.calculaMedia(imagem);
+
+		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
+			for (int linha = 0; linha < imagem.getAltura(); linha++) {
+				int tom = imagem.getTomCinza(coluna, linha);
+				imagem.setTomCinza(coluna, linha, tom >= imagem.getMediana() ? 220 : tom);
+			}
+		}
+
 		// TODO fazer for e se for igual ou maior recebe branco
 		// TODO tranformar essa matriz em buffer e retornar
 		return null;
 	}
+
+
+	public static BufferedImage maioresMedianaQuadrante3Recebe220(Imagem imagem) {
+		imagem.converteParaTonsDeCinza();
+		int tom;
+
+		for (int coluna = 0; coluna < imagem.getLargura(); coluna++) {
+			for (int linha = 0; linha < imagem.getAltura(); linha++) {
+				tom = imagem.getTomCinza(coluna, linha);
+				imagem.setTomCinza(coluna, linha, tom >= imagem.getMediana() ? 220 : tom);
+			}
+		}
+
+		return imagem.getBufferedImage();
+	}
+
 
 }
