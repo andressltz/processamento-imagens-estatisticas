@@ -587,7 +587,7 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuExtracaoAreaCirculoMaior;
 		JMenuItem submenuExtracaoCircularidadeCirculos;
 
-		submenuExtracaoAreaQuadrado = new JMenuItem("Calcular área e perímetro do quadrado");
+		submenuExtracaoAreaQuadrado = new JMenuItem("Calcular área e perímetro de um quadrado");
 		submenuExtracaoAreaQuadrado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -602,7 +602,7 @@ public class JanelaPrincipal extends Janela {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				validaImagemJaCarregada();
-				// TODO fazer
+				ExtracaoCaracteristicas.calcularAreaPerimetroCirculoMaior(imagem);
 			}
 		});
 		menuExtracaoCaracteristicas.add(submenuExtracaoAreaCirculoMaior);
