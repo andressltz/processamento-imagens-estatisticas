@@ -80,7 +80,7 @@ public class ExtracaoCaracteristicas {
 
 		perimetro = Double.valueOf(new DecimalFormat("#.##").format(perimetro));
 		area = Double.valueOf(new DecimalFormat("#.##").format(area));
-		JOptionPane.showMessageDialog(null, "O perímetro do quadrado é " + perimetro + " pixels e a área é " + area + " pixels. Seu raio é de " + raio + " pixels.");
+		JOptionPane.showMessageDialog(null, "O perímetro do círculo é " + perimetro + " pixels e a área é " + area + " pixels. Seu raio é de " + raio + " pixels.");
 	}
 
 }

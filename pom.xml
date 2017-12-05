@@ -46,6 +46,12 @@
 			<version>1.0.13</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.openpnp</groupId>
+			<artifactId>opencv</artifactId>
+			<version>3.2.0-1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -309,7 +309,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_90;
 		JMenuItem submenuFiltro_110;
 		JMenuItem submenuFiltro_120;
-		JMenuItem submenuFiltro_130;
 		JMenuItem submenuFiltro_131;
 		JMenuItem submenuFiltroGaussiano;
 
@@ -430,16 +429,6 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltros.add(submenuFiltro_120);
-
-		submenuFiltro_130 = new JMenuItem("Testeeee");
-		submenuFiltro_130.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				adicionaTelaConfig("Testeeeeeeeeeeeeeeee", new JanelaBordas(JanelaPrincipal.this));
-			}
-		});
-		menuFiltros.add(submenuFiltro_130);
 
 		submenuFiltro_131 = new JMenuItem("Valores Pixels");
 		submenuFiltro_131.addActionListener(new ActionListener() {
