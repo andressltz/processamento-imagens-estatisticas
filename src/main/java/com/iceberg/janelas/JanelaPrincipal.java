@@ -301,7 +301,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_10;
 		JMenuItem submenuFiltro_20;
 		JMenuItem submenuFiltro_30;
-		JMenuItem submenuFiltro_35;
 		JMenuItem submenuFiltro_40;
 		JMenuItem submenuFiltro_50;
 		JMenuItem submenuFiltro_60;
@@ -309,7 +308,6 @@ public class JanelaPrincipal extends Janela {
 		JMenuItem submenuFiltro_90;
 		JMenuItem submenuFiltro_110;
 		JMenuItem submenuFiltro_120;
-		JMenuItem submenuFiltro_130;
 		JMenuItem submenuFiltro_131;
 		JMenuItem submenuFiltroGaussiano;
 
@@ -346,16 +344,6 @@ public class JanelaPrincipal extends Janela {
 		});
 		menuFiltrosDiversos.add(submenuFiltro_30);
 
-		submenuFiltro_35 = new JMenuItem("Valores da mediana do terceiro quadrante NEW");
-		submenuFiltro_35.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				trocaImagem(Efeitos.maioresMediana140(imagem).getBufferedImage());
-			}
-		});
-		menuFiltrosDiversos.add(submenuFiltro_35);
-
 		submenuFiltro_40 = new JMenuItem("Valores menores que a média de toda a imagem recebem 255");
 		submenuFiltro_40.addActionListener(new ActionListener() {
 			@Override
@@ -375,6 +363,16 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltrosDiversos.add(submenuFiltro_50);
+
+		submenuFiltro_131 = new JMenuItem("Valores Pixels");
+		submenuFiltro_131.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				validaImagemJaCarregada();
+				new JanelaTonalidadeMenor100(imagem);
+			}
+		});
+		menuFiltrosDiversos.add(submenuFiltro_131);
 
 		submenuFiltro_60 = new JMenuItem("Converter em tons de cinza");
 		submenuFiltro_60.addActionListener(new ActionListener() {
@@ -430,26 +428,6 @@ public class JanelaPrincipal extends Janela {
 			}
 		});
 		menuFiltros.add(submenuFiltro_120);
-
-		submenuFiltro_130 = new JMenuItem("Testeeee");
-		submenuFiltro_130.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				adicionaTelaConfig("Testeeeeeeeeeeeeeeee", new JanelaBordas(JanelaPrincipal.this));
-			}
-		});
-		menuFiltros.add(submenuFiltro_130);
-
-		submenuFiltro_131 = new JMenuItem("Valores Pixels");
-		submenuFiltro_131.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				validaImagemJaCarregada();
-				adicionaTelaConfig("Menor 100", new JanelaTonalidadeMenor100(imagem));
-			}
-		});
-		menuFiltros.add(submenuFiltro_131);
 
 		submenuFiltroGaussiano = new JMenuItem("Filtro Gaussiano");
 		submenuFiltroGaussiano.addActionListener(new ActionListener() {
