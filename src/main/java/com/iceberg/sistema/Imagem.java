@@ -291,10 +291,9 @@ public class Imagem {
 		
 	}
 	
-	public BufferedImage rotacionar( int angulo, boolean antiHorario ) {
-		if( angulo == 0 || angulo == 360 ) {
+	public BufferedImage rotacionar(int angulo) {
+		if(angulo == 0 || angulo == 360) {
 			return bufferedImage;
-			
 		}
 		
 		int largura = bufferedImage.getWidth();
@@ -317,7 +316,6 @@ public class Imagem {
 			altura = bufferedImage.getWidth();
 			deslocX = largura - 1;
 			deslocY = 0;
-			
 		}
 
 		double[][] matrizMult = new double[][] { 
@@ -331,9 +329,8 @@ public class Imagem {
 		
 	}
 	
-	public BufferedImage multiplicaMatriz( double[][] matrizMult ) {
-		return multiplicaMatriz( bufferedImage.getWidth(), bufferedImage.getHeight(), matrizMult );
-		
+	public BufferedImage multiplicaMatriz(double[][] matrizMult) {
+		return multiplicaMatriz(bufferedImage.getWidth(), bufferedImage.getHeight(), matrizMult);
 	}
 	
 	public BufferedImage multiplicaMatriz(int larguraImg, int alturaImg, double[][] matrizMult) {

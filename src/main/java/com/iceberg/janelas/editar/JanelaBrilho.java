@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.editar;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,14 +10,11 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.iceberg.sistema.Efeitos;
+import com.iceberg.janelas.JanelaPrincipal;
 import com.iceberg.sistema.Imagem;
+import com.iceberg.utils.Efeitos;
 
-public class JanelaBordas extends JPanel{
-
-	/**
-	 * 
-	 */
+public class JanelaBrilho extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	JanelaPrincipal jp;
@@ -30,9 +27,10 @@ public class JanelaBordas extends JPanel{
     protected Imagem tmpImagem;
     protected int sliderValue;
     
-	public JanelaBordas(JanelaPrincipal jp) {
+	public JanelaBrilho(JanelaPrincipal jp) {
 		this.jp = jp;
 		montaJanela();
+		
 	}
 
 	public void montaJanela(){
@@ -48,23 +46,11 @@ public class JanelaBordas extends JPanel{
 				tmpImagem = jp.getImagem().getCopia();
 				sliderValue = source.getValue();
 				
-				int[][] xKernel = {
-						{0,0,0},
-						{0,-1,0},
-						{0,0,1}
-				};
-				
-				int[][] yKernel = {
-						{0,0,0},
-						{0,0,-1},
-						{0,1,0}
-				};
-				
-				jp.trocaImagem(tmpImagem.deteccaoDeBordas(xKernel, yKernel, sliderValue), false);
+				jp.trocaImagem(Efeitos.brilho(tmpImagem, sliderValue).getBufferedImage(), false);
 			}
 			
 		});
-		add(new JLabel("Limiar: "));
+		add(new JLabel("Brilho: "));
 		add(sliderBrilho);
 			
 		

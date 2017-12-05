@@ -1,4 +1,4 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.histograma;
 
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
@@ -9,6 +9,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.statistics.HistogramDataset;
 
+import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
 
 public class JanelaHistograma extends Janela{

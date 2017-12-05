@@ -1,9 +1,10 @@
-package com.iceberg.janelas;
+package com.iceberg.janelas.estatisticas;
 
 import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
+import com.iceberg.janelas.Janela;
 import com.iceberg.sistema.Imagem;
 
 public class JanelaModaQuadrante_4 extends Janela {
