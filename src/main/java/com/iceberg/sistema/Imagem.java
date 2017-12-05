@@ -161,13 +161,13 @@ public class Imagem {
 		
 	}
 	
-	public int getTomCinza(int x, int y){
+	public int getTomCinza( int x, int y ) {
 		return ( bufferedImage.getRGB( x, y ) >> 16 ) & 0xFF;
 		
 	}
 	
-	public void setTomCinza(int x, int y, int tomCinza){
-		bufferedImage.setRGB(x, y, tomCinza * 0x00010101);
+	public void setTomCinza( int x, int y, int tomCinza ) {
+		bufferedImage.setRGB( x, y, tomCinza * 0x00010101 );
 		
 	}
 
@@ -257,19 +257,19 @@ public class Imagem {
 		
 	}
 
-	public BufferedImage redimensionar(double scalaX, double scalaY) {
-		int largura = (int) (scalaX * bufferedImage.getWidth());
-		int altura = (int) (scalaY * bufferedImage.getHeight());
+	public BufferedImage redimensionar( double scalaX, double scalaY ) {
+		int largura = ( int ) ( scalaX * bufferedImage.getWidth() );
+		int altura = ( int ) ( scalaY * bufferedImage.getHeight() );
 		
-		BufferedImage resultado = new BufferedImage(largura, altura, bufferedImage.getType() != BufferedImage.TYPE_CUSTOM ? bufferedImage.getType() : BufferedImage.TYPE_INT_ARGB);
+		BufferedImage resultado = new BufferedImage( largura, altura, bufferedImage.getType() != BufferedImage.TYPE_CUSTOM ? bufferedImage.getType() : BufferedImage.TYPE_INT_ARGB );
 
-		for (int xDest = 0; xDest < largura; xDest++) {
-			int x = (int) (xDest / scalaX);
+		for( int xDest = 0; xDest < largura; xDest++ ) {
+			int x = ( int )( xDest / scalaX );
 			
-			for (int yDest = 0; yDest < altura; yDest++) {
-				int y = (int) (yDest / scalaY);
+			for( int yDest = 0; yDest < altura; yDest++ ) {
+				int y = ( int )( yDest / scalaY );
 				
-				resultado.setRGB(xDest, yDest, bufferedImage.getRGB(x, y));
+				resultado.setRGB( xDest, yDest, bufferedImage.getRGB( x, y ) );
 				
 			}
 			
@@ -279,14 +279,15 @@ public class Imagem {
 		
 	}
 	
-	public BufferedImage transladar(int x, int y){
+	public BufferedImage transladar( int x, int y ){
 		double[][] matrizMult = {
 				{1,0,x},
 				{0,1,y},
 				{0,0,1}
+				
 		};
 		
-		return this.bufferedImage = multiplicaMatriz(matrizMult);
+		return this.bufferedImage = multiplicaMatriz( matrizMult );
 		
 	}
 	
@@ -300,17 +301,17 @@ public class Imagem {
 		int deslocX = altura - 1;
 		int deslocY = largura - 1;
 		
-		if(angulo == 90) {
+		if( angulo == 90 ) {
 			largura = bufferedImage.getHeight();
 			altura = bufferedImage.getWidth();
 			deslocX = 0;
 			deslocY = altura - 1;
 			
-		} else if(angulo == 180) {
+		} else if( angulo == 180 ) {
 			deslocX = largura - 1;
 			deslocY = altura - 1;
 			
-		} else if(angulo == 270) {
+		} else if( angulo == 270 ) {
 			largura = bufferedImage.getHeight();
 			altura = bufferedImage.getWidth();
 			deslocX = largura - 1;
@@ -318,13 +319,13 @@ public class Imagem {
 		}
 
 		double[][] matrizMult = new double[][] { 
-				{ Math.cos(Math.toRadians(angulo)), -Math.sin(Math.toRadians(angulo)), 0 },
-				{ Math.sin(Math.toRadians(angulo)), Math.cos(Math.toRadians(angulo)), 0 },
-				{deslocX, deslocY, 1}
+				{ Math.cos( Math.toRadians( angulo ) ), -Math.sin( Math.toRadians( angulo ) ), 0 },
+				{ Math.sin( Math.toRadians( angulo ) ), Math.cos( Math.toRadians( angulo ) ), 0 },
+				{ deslocX, deslocY, 1 }
 				
 			};
 		
-		return multiplicaMatriz(largura, altura, matrizMult);
+		return multiplicaMatriz( largura, altura, matrizMult );
 		
 	}
 	
@@ -419,6 +420,7 @@ public class Imagem {
 		}
 		
 		bufferedImage.setRGB(x, y, new Color(r,g,b).getRGB());
+		
 	}
 	
 	public void setContraste(int x, int y, float contraste){
@@ -450,98 +452,115 @@ public class Imagem {
 		return matriz;
 	}
 	
-	public BufferedImage convolucao(int[][] mascara){
-		
+	public BufferedImage convolucao( int[][] mascara ) {
 		int larguraMascara = mascara.length;
-		int alturaMascara = mascara[0].length;
+		int alturaMascara = mascara[ 0 ].length;
 		
-		for(int x = 0, mMascaraX = 0; ((x < getLargura() - larguraMascara) && (mMascaraX < larguraMascara)); x++){
-			
-			for(int y = 0, mMascaraY = 0; ((y < getAltura() - alturaMascara) && (mMascaraY < alturaMascara)); y++){
+		for( int x = 0, mMascaraX = 0; ( ( x < getLargura() - larguraMascara ) && ( mMascaraX < larguraMascara ) ); x++ ) {
+			for( int y = 0, mMascaraY = 0; ( ( y < getAltura() - alturaMascara ) && ( mMascaraY < alturaMascara ) ); y++ ) {
+				int[][] matriz = getPixelsTonsCinza( x, y, x + larguraMascara, y + alturaMascara, mascara[ mMascaraX ][ mMascaraY ] );
 				
-				int[][] matriz = getPixelsTonsCinza(x, y, x + larguraMascara, y + alturaMascara, mascara[mMascaraX][mMascaraY]);
-				
-				setTomCinza(x+1, y+1, Math.round(getMediaVetor(matriz)));
+				setTomCinza( x + 1, y + 1, Math.round( getMediaVetor( matriz ) ) );
 				
 			}
 			
 		}
+		
 		return this.bufferedImage;
+		
 	}
 
-	public void imprimeVetor(int[][] matriz){
-		for(int x = 0; x < matriz.length; x++){
-			for(int y = 0; y < matriz[0].length; y++){
-				System.out.print(matriz[x][y] + "\t");
+	public void imprimeVetor( int[][] matriz ) {
+		for( int x = 0; x < matriz.length; x++ ) {
+			for( int y = 0; y < matriz[ 0 ].length; y++ ) {
+				System.out.print( matriz[ x ][ y ] + "\t" );
 			}
+			
 			System.out.println();
+			
 		}
+		
 		System.out.println();
+		
 	}
 	
-	public float getMediaVetor(int[][] matriz){
+	public float getMediaVetor( int[][] matriz ) {
 		float media = 0;
 		int soma = 0;
 		
-		for(int x = 0; x < matriz.length; x++){
-			for(int y = 0; y < matriz[0].length; y++){
-				soma += matriz[x][y];
+		for( int x = 0; x < matriz.length; x++ ) {
+			for( int y = 0; y < matriz[ 0 ].length; y++ ) {
+				soma += matriz[ x ][ y ];
+				
 			}
+			
 		}
 		
-		media = soma / (matriz.length * matriz[0].length);
+		media = soma / ( matriz.length * matriz[ 0 ].length );
 		
 		return media;
+		
 	}
 	
-	public BufferedImage limiarizacao(int limiar){
-		for( int x = 0; x < getLargura(); x++){
-			for( int y = 0; y < getAltura(); y++){
-				int pixelCinza = getTomCinza(x, y);
-				if(limiar >= pixelCinza){
-					setTomCinza(x, y, 255);
-				}else if(limiar <= pixelCinza){
-					setTomCinza(x, y, 0);
+	public BufferedImage limiarizacao( int limiar ) {
+		for( int x = 0; x < getLargura(); x++ ) {
+			for( int y = 0; y < getAltura(); y++ ) {
+				int pixelCinza = getTomCinza( x, y );
+				System.out.println( "Tom cinza: " + pixelCinza );
+				
+				if( limiar >= pixelCinza ) {
+					setTomCinza( x, y, 255 );
+					
+				} else if( limiar <= pixelCinza ) {
+					setTomCinza( x, y, 0 );
+					
 				}
+				
 			}	
+			
 		}
 		
 		return this.bufferedImage;
+		
 	}
 	
-	public BufferedImage deteccaoDeBordas(int[][] xKernel, int[][] yKernel, int threshold){
-		
+	public BufferedImage deteccaoDeBordas( int[][] xKernel, int[][] yKernel, int threshold ) {
 		int width = getLargura();
 		int height = getAltura();
-		int widthM1 = width-1;
-		int heightM1 = height-1;
-		
+		int widthM1 = width - 1;
+		int heightM1 = height - 1;
 		int i, j;
+		double v, gx, gy, g = 0;
 		
-		double v,gx,gy,g=0;
-		
-		for(int y = 1; y < heightM1; y++){
-			for(int x = 1; x < widthM1; x++){
+		for( int y = 1; y < heightM1; y++ ) {
+			for( int x = 1; x < widthM1; x++ ) {
 				gx = gy = 0;
-				for(i = 0; i < 3; i++){
-					for(j = 0; j < 3; j++){
-						v = getTomCinza(x + (i - 1), y + (j - 1));
-						gx += v * xKernel[i][j];
-						gy += v * yKernel[i][j];
+				for( i = 0; i < 3; i++ ) {
+					for( j = 0; j < 3; j++ ) {
+						v = getTomCinza( x + ( i - 1 ), y + ( j - 1 ) );
+						gx += v * xKernel[ i ][ j ];
+						gy += v * yKernel[ i ][ j ];
+						
 					}	
+					
 				}
-				g = Math.sqrt(Math.pow(gx, 2) + Math.pow(gy, 2));
+				
+				g = Math.sqrt( Math.pow( gx, 2 ) + Math.pow( gy, 2 ) );
 				
 				int p = 0;
-				if(g > threshold){
+				
+				if( g > threshold ) {
 					p = 255;
 				}
-				setTomCinza(x, y, p);
+				
+				setTomCinza( x, y, p );
+				
 			}
+			
 		}
 		
-		
 		return this.bufferedImage;
+		
 	}
 
 }
