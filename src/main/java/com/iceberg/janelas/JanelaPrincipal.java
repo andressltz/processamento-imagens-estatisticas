@@ -74,6 +74,7 @@ public class JanelaPrincipal extends Janela {
 		JMenu menuHistograma;
 		JMenu menuEstatisticas;
 		JMenu menuRotacionar;
+		JMenu menuMorfologiaMatematica;
 		JMenu menuExtracaoCaracteristicas;
 
 		menuBarPrincipal = new JMenuBar();
@@ -121,11 +122,52 @@ public class JanelaPrincipal extends Janela {
 		criaMenuRotacionar(menuRotacionar);
 
 		/*
+		 * Menu Morfologia Matemática
+		 */
+		menuMorfologiaMatematica = new JMenu("Morfologia Matemática");
+		menuBarPrincipal.add(menuMorfologiaMatematica);
+		criaMenuMorfologiaMatematica(menuMorfologiaMatematica);
+
+		/*
 		 * Menu Extração de Características
 		 */
 		menuExtracaoCaracteristicas = new JMenu("Extração de Características");
 		menuBarPrincipal.add(menuExtracaoCaracteristicas);
 		criaMenuExtracaoCaracteristicas(menuExtracaoCaracteristicas);
+	}
+
+	private void criaMenuMorfologiaMatematica(JMenu menuMorfologiaMatematica) {
+		// Menu Morfologia Matemática
+		JMenuItem submenuMorfologiaMatematicaErosao;
+		JMenuItem submenuMorfologiaMatematicaDilatacao;
+
+		submenuMorfologiaMatematicaErosao = new JMenuItem("Erosão");
+		submenuMorfologiaMatematicaErosao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Erosão", new JanelaFiltroLivre(JanelaPrincipal.this));
+				}
+
+			}
+		});
+		menuMorfologiaMatematica.add(submenuMorfologiaMatematicaErosao);
+
+		submenuMorfologiaMatematicaDilatacao = new JMenuItem("Dilatação");
+		submenuMorfologiaMatematicaDilatacao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (imagem == null) {
+					abrirNovaImagem();
+				} else {
+					adicionaTelaConfig("Dilatação", new JanelaFiltroLivre(JanelaPrincipal.this));
+				}
+
+			}
+		});
+		menuMorfologiaMatematica.add(submenuMorfologiaMatematicaDilatacao);
 	}
 
 	private void criaMenuRotacionar(JMenu menuRotacionar) {
@@ -519,6 +561,7 @@ public class JanelaPrincipal extends Janela {
 
 		menuArquivo.add(submenuAbrir);
 		menuArquivo.addSeparator();
+
 		submenuSalvar = new JMenuItem("Salvar");
 		submenuSalvar.addActionListener(new ActionListener() {
 			@Override
@@ -529,6 +572,7 @@ public class JanelaPrincipal extends Janela {
 		});
 
 		menuArquivo.add(submenuSalvar);
+
 		submenuSalvarcomo = new JMenuItem("Salvar como...");
 		submenuSalvarcomo.addActionListener(new ActionListener() {
 			@Override
@@ -540,6 +584,7 @@ public class JanelaPrincipal extends Janela {
 
 		menuArquivo.add(submenuSalvarcomo);
 		menuArquivo.addSeparator();
+
 		submenuInformacoes = new JMenuItem("Informações");
 		submenuInformacoes.addActionListener(new ActionListener() {
 			@Override
@@ -550,6 +595,7 @@ public class JanelaPrincipal extends Janela {
 		});
 
 		menuArquivo.add(submenuInformacoes);
+
 		submenuSair = new JMenuItem("Sair");
 		submenuSair.addActionListener(new ActionListener() {
 			@Override
