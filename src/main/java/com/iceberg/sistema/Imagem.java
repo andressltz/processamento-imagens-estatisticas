@@ -470,20 +470,6 @@ public class Imagem {
 		
 	}
 
-	public void imprimeVetor( int[][] matriz ) {
-		for( int x = 0; x < matriz.length; x++ ) {
-			for( int y = 0; y < matriz[ 0 ].length; y++ ) {
-				System.out.print( matriz[ x ][ y ] + "\t" );
-			}
-			
-			System.out.println();
-			
-		}
-		
-		System.out.println();
-		
-	}
-	
 	public float getMediaVetor( int[][] matriz ) {
 		float media = 0;
 		int soma = 0;
@@ -506,7 +492,6 @@ public class Imagem {
 		for( int x = 0; x < getLargura(); x++ ) {
 			for( int y = 0; y < getAltura(); y++ ) {
 				int pixelCinza = getTomCinza( x, y );
-				System.out.println( "Tom cinza: " + pixelCinza );
 				
 				if( limiar >= pixelCinza ) {
 					setTomCinza( x, y, 255 );
