@@ -41,28 +41,32 @@ public class ExtracaoCaracteristicas {
 
 	public static void calcularAreaPerimetroCirculoMaior(Imagem imagem) {
 		final int whiteColor = -1;
-		int topPoint = 0;
+		int centerTopPointX = 0;
+		int centerTopPointY = 0;
+		int leftTopPoint = 0;
 		int leftPointX = imagem.getLargura();
-		int leftPointY = 0;
+		int centerLeftPointY = 0;
+		int topLeftPointY = 0;
 
 		for (int y = 1; y < imagem.getAltura(); y++) {
 			for (int x = 1; x < imagem.getLargura(); x++) {
 
 				int rgb = imagem.getBufferedImage().getRGB(x, y);
 				if (rgb == whiteColor) {
-					// if (topPoint != 0) {
-					// leftPoint = x;
-					// break;
-					// }
+					if (centerTopPointX == 0 && leftTopPoint != 0) {
+						centerTopPointX = (((x - 1) - leftTopPoint) / 2) + leftTopPoint;
+						centerTopPointY = y;
+					}
+					if (x == leftPointX && centerLeftPointY == 0 && topLeftPointY != 0) {
+						centerLeftPointY = (((y - 1) - topLeftPointY) / 2) + topLeftPointY;
+					}
 				} else {
-					if (topPoint == 0) {
-						topPoint = y;
-						System.out.println("top x, y (" + x + "," + y + ")");
+					if (centerTopPointX == 0) {
+						leftTopPoint = x;
 					} else {
 						if (x < leftPointX) {
 							leftPointX = x;
-							leftPointY = y;
-							System.out.println("left x, y (" + x + "," + y + ")");
+							topLeftPointY = y;
 						}
 					}
 				}
@@ -70,7 +74,7 @@ public class ExtracaoCaracteristicas {
 			}
 		}
 
-		int raio = leftPointY - topPoint;
+		int raio = centerLeftPointY - centerTopPointY;
 		double perimetro = (2 * raio) * Math.PI;
 		double area = Math.PI * (Math.pow(raio, 2));
 
